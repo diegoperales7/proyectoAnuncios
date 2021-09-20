@@ -162,16 +162,24 @@ class Usuario extends CI_Controller {
         $config['file_name']=$nombrearchivo;
 
         //reemplazar los archivos
-        $direccion="./uploads/usuario/".$nombrearchivo;
-        unlink($direccion);
+        $direccion=FCPATH."uploads\usuario\\".$nombrearchivo;
+        if(file_exists($direccion))
+        {
+            
+            unlink($direccion);
+            
+                //tipos de archivos permitidos
+            
+        }
 
         //tipos de archivos permitidos
-        $config['allowed_types']='jpg';//'gif|jpg|png';
+        $config['allowed_types']='jpg|png';//'gif|jpg|png';
         $this->load->library('upload',$config);
 
         if (!$this->upload->do_upload())
         {
-            $data['error']=$this->upload->display_errors();
+            //$data['error']=$this->upload->display_errors();
+            redirect('usuario/listar_usuario','refresh');
         }
         else
         {
@@ -209,7 +217,7 @@ class Usuario extends CI_Controller {
         $direccion=FCPATH."uploads\usuario\\".$nombrearchivo;
         if(file_exists($direccion))
         {
-            var_dump("Hola");
+            //var_dump("Hola");
             unlink($direccion);
             
                 //tipos de archivos permitidos

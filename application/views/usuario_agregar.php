@@ -36,6 +36,11 @@
                    
                 </div>
                 <div class="mb-3">
+                    <label for="InputPassword2" class="form-label">Repita su Contraseña</label>
+                    <input type="password" class="form-control" id="InputPassword2" name="contrasena2" placeholder="Repita su contraseña" >
+                   
+                </div>
+                <div class="mb-3">
                     <label for="InputCelular" class="form-label">Celular</label>
                     <input type="number" class="form-control" id="InputCelular" name="celular" placeholder="Escriba su Celular">
                 </div>
