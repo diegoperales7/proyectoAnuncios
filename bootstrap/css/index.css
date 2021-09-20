@@ -1,0 +1,29 @@
+
+.center{
+    margin: 0 auto;
+    
+}
+
+.final{
+    position: relative;
+    bottom: 0;
+}
+
+.tabcolor{
+    background-color: #11123A;
+     color: white; 
+}
+
+.redondear{
+    border-radius: 2%;
+}
+
+.bordes{
+
+    border-style: solid;
+    border-radius: 3%;
+    background-color: #11123A;
+    margin: 10px;
+    padding: 10px;
+    color: white;
+}
