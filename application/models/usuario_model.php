@@ -60,5 +60,14 @@ class Usuario_model extends CI_Model {
         
     }
 
+    public function lista_roles()
+    {
+        
+        $this->db->select('*');
+        $this->db->from('rol');
+        $this->db->where('activo',1);
+        return $this->db->get();
+        
+    }
 
 }

@@ -43,21 +43,24 @@ class Usuario extends CI_Controller {
 
     public function agregar()
     {
+        $roles=$this->usuario_model->lista_roles();
+        $data['roles']=$roles;
         $this->load->view('inc/header_view.php'); // archivos de cabecera
-		$this->load->view('usuario_agregar'); // contenido
+		$this->load->view('usuario_agregar',$data); // contenido
 		$this->load->view('inc/footer_view.php'); // archivos de footer (js)
     }
 
 
     public function agregarbd(){
         
-        $data['nombre']=$_POST['nombre'];
-        $data['apellido']=$_POST['apellido'];
+        $data['nombres']=$_POST['nombres'];
+        $data['primerApellido']=$_POST['primerApellido'];
+        $data['segundoApellido']=$_POST['segundoApellido'];
         $data['correo']=$_POST['correo'];
         //$encript=$_POST['contrasena'];
         $data['contrasena']=md5($_POST['contrasena']);
         $data['celular']=$_POST['celular'];
-           
+        $data['rol_idRol']=$_POST['idRol'];  
         
         $this->usuario_model->agregarUsuario($data);
     
