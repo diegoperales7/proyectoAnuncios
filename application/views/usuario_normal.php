@@ -3,43 +3,26 @@
 
 <br>
 <div class="col-md-6 center" >
+        
+        
 	<form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
         <button class="btn btn-outline-primary btn-lg" type="submit">Buscar</button>
 	</form>
+
+
         <br>
+
         <div class="row">
-        <div class="col-3">
-                <?php 
-                        echo form_open_multipart('categoria/lista');
-                ?>
-                <button type="submit" class="btn btn-success btn-xs">Publicar Anuncio</button>
-
-                <?php
-                        echo form_close()
-                ?>
-        </div>
-        <div class="col-3">
-        <?php 
-                echo form_open_multipart('usuario/misAnuncios');
-            ?>
-            <button type="submit" class="btn btn-primary btn-xs">Mis anuncios</button>
-
-            <?php
-                echo form_close()
-            ?>
-        </div>
-
-        <div class="col-3">
-        <?php 
-            echo form_open_multipart('usuario/logout');
-        ?>
-            <button type="submit" class="btn btn-danger btn-xs">Cerrar Sesion</button>
-        <?php 
-             echo form_close();
-            ?>
+        <div class="col-12">
+        <lu class="botonEnlaces">
+                <li><a class="btn btn-success btn-xs" href="<?php echo base_url(); ?>index.php/categoria/lista">Primero</a></li>
+                <li><a class="btn btn-primary btn-xs" href="<?php echo base_url(); ?>index.php/usuario/misAnuncios">Segundo</a></li>
+                <li><a class="btn btn-danger btn-xs" href="<?php echo base_url(); ?>index.php/usuario/logout">Tercero</a></li>
+        </lu>
         </div>
         </div>
+        
         
         
 <br>
