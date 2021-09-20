@@ -50,17 +50,14 @@
                 
                 <div class="mb-3">
                     <label for="InputCiudad" class="form-label">Ciudad</label>
-                    <select  class="form-control" name="ciudad_idCiudad">
-                        <option value="">Seleccione una ciudad</option>
-                        <option value="1">Beni</option>
-                        <option value="2" >Chuquiscada</option>
-                        <option value="3">Cochabamba</option>
-                        <option value="4">La Paz</option>
-                        <option value="5">Oruro</option>
-                        <option value="6">Pando</option>
-                        <option value="7">Potosi</option>
-                        <option value="8">Santa Cruz</option>
-                        <option value="9">Tarija</option>
+                    <select class="form-control" name="ciudad_idCiudad" >
+                        <option value="" selected>Seleccione una ciudad</option>
+                        <?php
+                        foreach($ciudades->result() as $row){?>
+                            <option value="<?php echo $row->idCiudad; ?>"><?php echo $row->ciudad; ?></option><?php
+                            
+                        }?>
+                        
                     </select>
                 </div>
                

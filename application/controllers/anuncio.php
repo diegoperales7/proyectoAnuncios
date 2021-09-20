@@ -29,7 +29,7 @@ class Anuncio extends CI_Controller {
     {
         $actividades=$this->actividad_model->lista_actividades();
         $data['actividades']=$actividades;
-        $ciudades="";
+        $ciudades=$this->anuncio_model->lista_ciudades();
         $data['ciudades']=$ciudades;
        
         $this->load->view('inc/header_view3.php'); // archivos de cabecera
@@ -206,7 +206,17 @@ class Anuncio extends CI_Controller {
         //redirect('usuario/index','refresh');
     }
   
-  
+    public function agregar_vehiculo()
+    {
+        $actividades=$this->actividad_model->lista_actividades();
+        $data['actividades']=$actividades;
+        $ciudades=$this->anuncio_model->lista_ciudades();
+        $data['ciudades']=$ciudades;
+       
+        $this->load->view('inc/header_view3.php'); // archivos de cabecera
+		$this->load->view('anuncio_agregar_vehiculo',$data); // contenido
+		$this->load->view('inc/footer_view.php'); // archivos de footer (js)
+    }
 
     
 

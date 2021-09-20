@@ -66,5 +66,14 @@ class Anuncio_model extends CI_Model {
         return $this->db->get();
 	}
 
+    public function lista_ciudades()
+    {
+        
+        $this->db->select('*');
+        $this->db->from('ciudad');
+        $this->db->where('activo',1);
+        return $this->db->get();
+        
+    }
 
 }
