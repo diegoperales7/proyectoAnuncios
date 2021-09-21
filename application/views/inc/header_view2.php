@@ -11,6 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>bootstrap/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>bootstrap/css/index.css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>bootstrap/css/reportes.css">
+    
 
 
 	
@@ -35,7 +36,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="<?php echo base_url(); ?>index.php/" style="color:white">Inicio</a>
+          <a class="nav-link active" aria-current="page" href="<?php echo base_url(); ?>index.php/usuario/panel" style="color:white">Inicio</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#" style="color:white">Contactos</a>
@@ -64,17 +65,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </a>
             
         </li>
-       
-        <li class="nav-item">
-       <?php 
-            echo form_open_multipart('usuario/logout');
-        ?>
-            <button type="submit" class="btn btn-danger btn-xs">Cerrar Sesion</button>
-        <?php 
-             echo form_close();
-            ?>
-       </li>
+          
+       <li><a class="btn btn-danger btn-xs" href="<?php echo base_url(); ?>index.php/usuario/logout">Cerrar Sesión</a></li>
       </ul>
+      
       
     </div>
   </div>

@@ -3,33 +3,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Actividad extends CI_Controller {
 
-	public function index()
-	{
-        //index.php/controaldor/metodo/urisegment3
-        //index.php/usuario/index/2
-
-        $data['msg']=$this->uri->segment(3);
-
-        if($this->session->userdata('correo'))
-        {
-            redirect('usuario/panel','refresh');       
-
-        }
-        else
-        {
-            $this->load->view('inc/header_view3.php');
-            $this->load->view('welcome_message',$data);
-            $this->load->view('inc/footer_view.php');
-
-        }
-
-	}
+	
     public function lista()
     {
         $lista=$this->actividad_model->lista_actividades();
         $data['actividades']=$lista;
 
-		$this->load->view('inc/header_view3.php'); // archivos de cabecera
+		$this->load->view('inc/header_view2.php'); // archivos de cabecera
 		$this->load->view('actividad_lista',$data); // contenido
 		$this->load->view('inc/footer_view.php');
      
@@ -46,8 +26,9 @@ class Actividad extends CI_Controller {
     public function agregarbd(){
         //$idUsuario
         
-          
+            $idUsuario=$this->session->userdata('correo');
             $data['tipo']=$_POST['tipo'];
+            $data['usuarioid']=$idUsuario;
            
             $this->actividad_model->insertar_actividad($data);
             

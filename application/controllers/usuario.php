@@ -45,7 +45,7 @@ class Usuario extends CI_Controller {
     {
         $roles=$this->usuario_model->lista_roles();
         $data['roles']=$roles;
-        $this->load->view('inc/header_view.php'); // archivos de cabecera
+        $this->load->view('inc/header_view2.php'); // archivos de cabecera
 		$this->load->view('usuario_agregar',$data); // contenido
 		$this->load->view('inc/footer_view.php'); // archivos de footer (js)
     }
@@ -128,14 +128,14 @@ class Usuario extends CI_Controller {
                 {
                     redirect('usuario/listar_usuario','refresh');  
                 }  
-                if($this->session->userdata('rol_idRol')==2 || $this->session->userdata('rol_idRol')==3)
+                if($this->session->userdata('rol_idRol')==2)
                 {
                     redirect('usuario/usuario_normal','refresh');  
                 }
-                /*if($this->session->userdata('rol_idRol')==3)
+                if($this->session->userdata('rol_idRol')==3)
                 {
-                    //redirect('usuario/usuario_normal','refresh');  
-                }  */          
+                    redirect('usuario/usuario_normal','refresh');  
+                }         
         }
         else
         {
@@ -164,12 +164,8 @@ class Usuario extends CI_Controller {
         //reemplazar los archivos
         $direccion=FCPATH."uploads\usuario\\".$nombrearchivo;
         if(file_exists($direccion))
-        {
-            
+        {          
             unlink($direccion);
-            
-                //tipos de archivos permitidos
-            
         }
 
         //tipos de archivos permitidos
@@ -195,7 +191,7 @@ class Usuario extends CI_Controller {
     public function usuario_normal()
 	{
 
-		$this->load->view('inc/header_view.php'); // archivos de cabecera
+		$this->load->view('inc/header_view3.php'); // archivos de cabecera
 		$this->load->view('usuario_normal'); // contenido
 		$this->load->view('inc/footer_view.php'); // archivos de footer (js)
 	}

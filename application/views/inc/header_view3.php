@@ -35,7 +35,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="<?php echo base_url(); ?>index.php/" style="color:white">Inicio</a>
+          <a class="nav-link active" aria-current="page" href="<?php echo base_url(); ?>index.php/usuario/panel" style="color:white">Inicio</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#" style="color:white">Contactos</a>
@@ -46,16 +46,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		  Gestionar
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <li><a class="dropdown-item" href="<?php echo base_url(); ?>index.php/usuario/index">Roles</a></li>
-            <li><a class="dropdown-item" href="<?php echo base_url(); ?>index.php/actividad/lista">Actividades</a></li>
-            <li><a class="dropdown-item" href="">Modos Premium</a></li>
-            <li><a class="dropdown-item" href="">Metodos de pago</a></li>
-            <li><a class="dropdown-item" href="">Ciudades</a></li>
-            <li><a class="dropdown-item" href="">Categorias</a></li>
-            <li><a class="dropdown-item" href="">Caracteristicas categorias</a></li>
-            <li><a class="dropdown-item" href="<?php echo base_url(); ?>index.php/usuario/lista_anuncios_admi">Lista Anuncios</a></li>
-            <li><a class="dropdown-item" href="<?php echo base_url(); ?>index.php/usuario/listar_usuario">Lista Usuarios</a></li>
-            
+          <li><a class="dropdown-item" href="<?php echo base_url(); ?>index.php/usuario/panel">Editar Perfil</a></li>
+            <li><a class="dropdown-item" href="<?php echo base_url(); ?>index.php/actividad/lista">Editar Anuncios</a></li>
+           <li><a class="dropdown-item" href="<?php echo base_url(); ?>index.php/usuario/lista_anuncios_admi">Ser Premium</a></li>
           </ul>
         </li>
         <li class="nav-item">
@@ -65,15 +58,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             
         </li>
         
-        <li class="nav-item">
-       <?php 
-            echo form_open_multipart('usuario/logout');
-        ?>
-            <button type="submit" class="btn btn-danger btn-xs">Cerrar Sesion</button>
-        <?php 
-             echo form_close();
-            ?>
-       </li>
+        <li><a class="btn btn-danger btn-xs" href="<?php echo base_url(); ?>index.php/usuario/logout">Cerrar Sesión</a></li>
+
       </ul>
       
     </div>
