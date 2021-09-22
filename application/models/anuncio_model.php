@@ -81,6 +81,31 @@ class Anuncio_model extends CI_Model {
         return $this->db->get();
 	}
 
+    public function recuperarDatosCategoria($idAnuncio,$idUsuario)
+	{
+		$this->db->select('*');
+        $this->db->from('datoscategoria');
+        $this->db->where('idAnuncio',$idAnuncio);
+        $this->db->where('idUsuario',$idUsuario);
+        return $this->db->get();
+	}
+
+    public function recuperarAnuncioVehiculo($idAnuncio,$idUsuario)
+	{
+		$idUsuario=$this->session->userdata('idUsuario');
+
+		$this->db->select('*');
+        $this->db->from('anuncio');
+        //$this->db->where('anuncio.activo',1);
+        $this->db->where('idAnuncio',$idAnuncio);
+        $this->db->where('datoscategoria.usuarioid',$idUsuario);
+        $this->db->join('datoscategoria','datoscategoria.anuncio_idAnuncio=anuncio.idAnuncio');
+        $this->db->join('categoria','categoria.idCategoria=anuncio.categoria_idCategoria');
+        $this->db->join('ciudad','ciudad.idCiudad=anuncio.ciudad_idCiudad');
+        $this->db->group_by('anuncio.idAnuncio');
+        return $this->db->get();
+	}
+
     public function lista_ciudades()
     {
         

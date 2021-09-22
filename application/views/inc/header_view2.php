@@ -52,7 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <li><a class="dropdown-item" href="">Modos Premium</a></li>
             <li><a class="dropdown-item" href="">Metodos de pago</a></li>
             <li><a class="dropdown-item" href="">Ciudades</a></li>
-            <li><a class="dropdown-item" href="">Categorias</a></li>
+            <li><a class="dropdown-item" href="<?php echo base_url(); ?>index.php/categoria/mostrar_lista"">Categorias</a></li>
             <li><a class="dropdown-item" href="">Caracteristicas categorias</a></li>
             <li><a class="dropdown-item" href="<?php echo base_url(); ?>index.php/usuario/lista_anuncios_admi">Lista Anuncios</a></li>
             <li><a class="dropdown-item" href="<?php echo base_url(); ?>index.php/usuario/listar_usuario">Lista Usuarios</a></li>

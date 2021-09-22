@@ -98,13 +98,34 @@ class Anuncio extends CI_Controller {
         //$idUsuario=$_POST['idUsuario'];
         //$data2['idUsuario']=$_POST['idUsuario'];
         $idAnuncio=$_POST['idAnuncio'];
+        $categoria=$_POST['nombre'];
+        $idUsuario=$this->session->userdata('idUsuario');
 
-        $data['idAnuncio']=$_POST['idAnuncio'];
-        $data['infoanuncio']=$this->anuncio_model->recuperarAnuncio($idAnuncio);
+        if($categoria=='Vehiculos'){
+            $data['idAnuncio']=$_POST['idAnuncio'];
+            $data['infoanuncio']=$this->anuncio_model->recuperarAnuncioVehiculo($idAnuncio,$idUsuario);
+            //$data2['infodatos']=$this->anuncio_model->recuperarDatosCategoria($idAnuncio,$idAnuncio);
+
+            $this->load->view('inc/header_view3.php'); // archivos de cabecera
+            $this->load->view('anuncio_modificarVehiculo'); // contenido
+            $this->load->view('inc/footer_view.php'); // archivos de footer (js)
+        }
+        if ($categoria=='Ropas') {
+            $data['idAnuncio']=$_POST['idAnuncio'];
+            $data['infoanuncio']=$this->anuncio_model->recuperarAnuncio($idAnuncio);
+            $this->load->view('inc/header_view3.php'); // archivos de cabecera
+            $this->load->view('anuncio_lista_modificarUser',$data); // contenido
+            $this->load->view('inc/footer_view.php'); // archivos de footer (js)
+        }
+        if ($categoria=='Empleos') {
+            $data['idAnuncio']=$_POST['idAnuncio'];
+            $data['infoanuncio']=$this->anuncio_model->recuperarAnuncio($idAnuncio);
+            $this->load->view('inc/header_view3.php'); // archivos de cabecera
+            $this->load->view('anuncio_lista_modificarUser',$data); // contenido
+            $this->load->view('inc/footer_view.php'); // archivos de footer (js)
+        }
         
-        $this->load->view('inc/header_view3.php'); // archivos de cabecera
-		$this->load->view('anuncio_lista_modificarUser',$data); // contenido
-		$this->load->view('inc/footer_view.php'); // archivos de footer (js)
+        
     }
 
     public function modificar_listaAdmi()

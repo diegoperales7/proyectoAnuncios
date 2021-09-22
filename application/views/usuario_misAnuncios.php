@@ -72,6 +72,7 @@
                                         echo form_open_multipart('anuncio/modificar_anuncio_user');
                                     ?>
                                     <input type="hidden" name="idAnuncio" value="<?php echo $row->idAnuncio; ?>">
+                                    <input type="hidden" name="nombre" value="<?php echo $row->nombre; ?>">
                                     <button type="submit" class="btn btn-primary btn-xs">Modificar</button>
 
                                     <?php
