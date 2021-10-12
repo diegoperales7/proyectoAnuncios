@@ -45,7 +45,7 @@ class Usuario extends CI_Controller {
     {
         $roles=$this->usuario_model->lista_roles();
         $data['roles']=$roles;
-        $this->load->view('inc/header_view2.php'); // archivos de cabecera
+        $this->load->view('inc/header_view.php'); // archivos de cabecera
 		$this->load->view('usuario_agregar',$data); // contenido
 		$this->load->view('inc/footer_view.php'); // archivos de footer (js)
     }

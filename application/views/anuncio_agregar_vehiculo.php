@@ -78,7 +78,7 @@
                             <input type="text" class="form-control" id="InputDescripcion" name="descripcion" placeholder="Escriba su desripcion" >
                         </div>
                         <div class="mb-3">
-                            <label for="InputFile" class="form-label" name="userfile">Seleccione una foto de perfil</label>
+                            <label for="InputFile" class="form-label" name="userfile">Seleccione una foto </label>
                             <input class="form-control" type="file" id="InputFile" name="userfile">
                         </div>
                         <div class="mb-3">
