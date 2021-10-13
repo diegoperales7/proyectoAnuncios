@@ -6,10 +6,15 @@ class Anuncio extends CI_Controller {
 	
     public function agregar()
     {
+        //$idcategoria=$_GET('var');
+        //var_dump($idcategoria);
+        
         $actividades=$this->actividad_model->lista_actividades();
         $data['actividades']=$actividades;
         $ciudades=$this->anuncio_model->lista_ciudades();
         $data['ciudades']=$ciudades;
+        $camposcategorias=$this->camposcategoria_model->lista_camposcategorias(2);
+        $data['camposcategorias']=$camposcategorias;
        
         $this->load->view('inc/header_view3.php'); // archivos de cabecera
 		$this->load->view('anuncio_agregar',$data); // contenido
@@ -17,18 +22,74 @@ class Anuncio extends CI_Controller {
     }
 
     public function agregarbd(){
-        //$idUsuario
-        $aleatorio=rand(0,1000);
-        $codigo="r".$aleatorio;
-        $nombrearchivo=$aleatorio.".jpg";
+        
+        $idUsuario=$this->session->userdata('idUsuario');
+        
+        $data['codigo']="r";
+        $data['titulo']=$_POST['titulo'];
+        $data['precio']=$_POST['precio'];
+        $data['estado']=$_POST['estado'];
+        $data['descripcion']=$_POST['descripcion']; 
+        $data['usuario_idUsuario']=$idUsuario;
+        $data['actividad_idActividad']=$_POST['actividad_idActividad'];
+        $data['ciudad_idCiudad']=$_POST['ciudad_idCiudad'];
+        $data['categoria_idCategoria']=1;
+        
+        $this->anuncio_model->insertar_anuncio($data);
+
+        $ultimoID=$this->db->insert_id();
+
+        $data2['valor']=$_POST['marca'];
+        $data2['anuncio_idAnuncio']=$ultimoID;
+        $data2['camposcategoria_idCamposCategoria']=1;
+        $data2['usuarioid']=$idUsuario;
+
+        $this->anuncio_model->insertar_datosCategoria($data2);
+
+        $data3['valor']=$_POST['modelo'];
+        $data3['anuncio_idAnuncio']=$ultimoID;
+        $data3['camposcategoria_idCamposCategoria']=2;
+        $data3['usuarioid']=$idUsuario;
+
+        $this->anuncio_model->insertar_datosCategoria($data3);
+
+        $data4['valor']=$_POST['anio'];
+        $data4['anuncio_idAnuncio']=$ultimoID;
+        $data4['camposcategoria_idCamposCategoria']=3;
+        $data4['usuarioid']=$idUsuario;
+
+        $this->anuncio_model->insertar_datosCategoria($data4);
+
+        $data5['valor']=$_POST['color'];
+        $data5['anuncio_idAnuncio']=$ultimoID;
+        $data5['camposcategoria_idCamposCategoria']=4;
+        $data5['usuarioid']=$idUsuario;
+
+        $this->anuncio_model->insertar_datosCategoria($data5);
+
+       $data6['valor']=$_POST['combustible'];
+       $data6['anuncio_idAnuncio']=$ultimoID;
+       $data6['camposcategoria_idCamposCategoria']=5;
+       $data6['usuarioid']=$idUsuario;
+
+        $this->anuncio_model->insertar_datosCategoria($data6);
+
+        $codigo='r'.str_pad($ultimoID,5,'0',STR_PAD_LEFT);
+        $data7['codigo']=$codigo;        
+        $this->anuncio_model->modificarAnuncio_fotoRegistro($ultimoID,$data7);
+
+        $nombrearchivo=$ultimoID.".jpg";
 
         $config['upload_path']='./uploads/anuncio';
         //nombre del archivo
         $config['file_name']=$nombrearchivo;
 
         //reemplazar los archivos
-        $direccion="./uploads/anuncio/".$nombrearchivo;
-        unlink($direccion);
+        $direccion=FCPATH."uploads\usuario\\".$nombrearchivo;
+        if(file_exists($direccion))
+        {     
+            unlink($direccion);      
+        }
 
           //tipos de archivos permitidos
         $config['allowed_types']='jpg';//'gif|jpg|png';
@@ -36,25 +97,18 @@ class Anuncio extends CI_Controller {
 
         if (!$this->upload->do_upload())
         {
-            $data['error']=$this->upload->display_errors();
+            //$data['error']=$this->upload->display_errors();
+
+            redirect('usuario/panel','refresh');
         }
         else
         {
-            $data['codigo']=$codigo;
-            $data['titulo']=$_POST['titulo'];
-            $data['precio']=$_POST['precio'];
-            $data['estado']=$_POST['estado'];
-            $data['descripcion']=$_POST['descripcion'];
             
-            $data['fotos']=$nombrearchivo;
-            $data['usuario_idUsuario']=rand(2,3);
-            $data['actividad_idActividad']=$_POST['actividad_idActividad'];
-            $data['ciudad_idCiudad']=$_POST['ciudad_idCiudad'];
-            
-            
-            $this->anuncio_model->insertar_anuncio($data);
+            $data8['fotos']=$nombrearchivo;
+               
+            $this->anuncio_model->modificarAnuncio_fotoRegistro($ultimoID,$data8);
             $this->upload->data();
-            redirect('usuario/lista_anuncios_admi','refresh');
+            redirect('usuario/panel','refresh');
 
         }
 
@@ -222,7 +276,7 @@ class Anuncio extends CI_Controller {
     public function agregar_anuncioVehiculo(){
         //$idUsuario
         $idUsuario=$this->session->userdata('idUsuario');
-       
+        
         $data['codigo']="r";
         $data['titulo']=$_POST['titulo'];
         $data['precio']=$_POST['precio'];

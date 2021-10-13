@@ -13,7 +13,8 @@
 					<i class="fa fa-car" aria-hidden="true"></i>
 					<span>VEHÍCULOS</span>
 				</a>
-                <a href="<?php echo base_url(); ?>index.php/anuncio/agregar_ropa" id="categori-2">
+				<?php $var="2";?>
+                <a href="<?php echo base_url(); ?>index.php/anuncio/agregar?var=<?php echo $var;?>" id="categori-2">
 					<i class="fa fa-shopping-bag" aria-hidden="true"></i>
 					<span>ROPA</span>
 				</a>
