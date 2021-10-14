@@ -17,11 +17,13 @@
 	width: 100%;
 	box-sizing: border-box;
 	text-align: center;
-    
 	position: absolute;
 	left: 0;
+	
+	
 
 }
+
 .container-category i{
 	height: 90px;
 	line-height: 90px;
@@ -32,15 +34,26 @@
 	height: 60px;
 	bottom: 0;
 }
-#categori-1:hover{ background-color: #E65100; border-color: #E65100; }
-#categori-2:hover{ background-color: #B71C1C; border-color: #B71C1C; }
-#categori-3:hover{ background-color: #1A237E; border-color: #1A237E; }
-#categori-4:hover{ background-color: #03A9F4; border-color: #03A9F4; }
-#categori-5:hover{ background-color: #263238; border-color: #263238; }
-#categori-6:hover{ background-color: #AFB42B; border-color: #AFB42B; }
-#categori-7:hover{ background-color: #00ACC1; border-color: #00ACC1; }
-#categori-8:hover{ background-color: #EF6C00; border-color: #EF6C00; }
-#categori-9:hover{ background-color: #00695C; border-color: #00695C; }
-#categori-10:hover{ background-color: #607D8B; border-color: #607D8B; }
-#categori-11:hover{ background-color: #1976D2; border-color: #1976D2; }
-#categori-12:hover{ background-color: #3949AB; border-color: #3949AB; }
+
+.centreadoCat{
+	margin-left: 10%;
+	padding-left: 4%;
+	margin-right: 10%;
+}
+
+#cat-1:hover{ background-color: #E65100; border-color: #E65100; }
+#cat-2:hover{ background-color: #B71C1C; border-color: #B71C1C; }
+#cat-3:hover{ background-color: #1A237E; border-color: #1A237E; }
+#cat-4:hover{ background-color: #03A9F4; border-color: #03A9F4; }
+#cat-5:hover{ background-color: #263238; border-color: #263238; }
+#cat-6:hover{ background-color: #AFB42B; border-color: #AFB42B; }
+#cat-7:hover{ background-color: #00ACC1; border-color: #00ACC1; }
+#cat-8:hover{ background-color: #f5962a; border-color: #f5962a; }
+#cat-9:hover{ background-color: #00695C; border-color: #00695C; }
+#cat-10:hover{ background-color: #607D8B; border-color: #607D8B; }
+#cat-11:hover{ background-color: #1976D2; border-color: #1976D2; }
+#cat-12:hover{ background-color: #3949AB; border-color: #3949AB; }
+#cat-13:hover{ background-color: #198831; border-color: #198831; }
+#cat-14:hover{ background-color: #00e6d3; border-color: #00e6d3; }
+#cat-15:hover{ background-color: #a1e600; border-color: #a1e600; }
+#cat-16:hover{ background-color: #cb00e6; border-color: #cb00e6; }

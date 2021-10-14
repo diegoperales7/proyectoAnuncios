@@ -13,6 +13,15 @@ class Categoria_model extends CI_Model {
         return $this->db->get();
 	}
 
+    public function lista_elegirCategoria()
+	{
+		$this->db->select('*');
+        $this->db->from('categoria');
+        $this->db->where('nombre !=','Todas');
+        
+        return $this->db->get();
+	}
+
     public function eliminarCategoria($idCategoria,$data)
     {
         

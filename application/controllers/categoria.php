@@ -37,13 +37,11 @@ class Categoria extends CI_Controller {
 	
 	public function lista()
     {
-        /*$actividades=$this->actividad_model->lista_actividades();
-        $data['actividades']=$actividades;
-        $ciudades="";
-        $data['ciudades']=$ciudades;*/
+        $categorias=$this->categoria_model->lista_elegirCategoria();
+        $data['categorias']=$categorias;
        
         $this->load->view('inc/header_view2.php'); // archivos de cabecera
-		$this->load->view('categoria_seleccionar'); // contenido
+		$this->load->view('categoria_seleccionar',$data); // contenido
 		$this->load->view('inc/footer_view.php'); // archivos de footer (js)
     }
 

@@ -190,9 +190,11 @@ class Usuario extends CI_Controller {
 
     public function usuario_normal()
 	{
+        $lista=$this->categoria_model->lista_categorias();
+        $data['categorias']=$lista;
 
 		$this->load->view('inc/header_view3.php'); // archivos de cabecera
-		$this->load->view('usuario_normal'); // contenido
+		$this->load->view('usuario_normal',$data); // contenido
 		$this->load->view('inc/footer_view.php'); // archivos de footer (js)
 	}
 
