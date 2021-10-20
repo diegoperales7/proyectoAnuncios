@@ -57,3 +57,12 @@
 #cat-14:hover{ background-color: #00e6d3; border-color: #00e6d3; }
 #cat-15:hover{ background-color: #a1e600; border-color: #a1e600; }
 #cat-16:hover{ background-color: #cb00e6; border-color: #cb00e6; }
+
+
+.quitar{
+	border: none;
+	background: none;
+	padding: 0;
+	margin: 0;
+	
+}

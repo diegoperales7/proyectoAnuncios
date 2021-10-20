@@ -8,14 +8,17 @@ class Anuncio extends CI_Controller {
     {
         //$idcategoria=$_GET('var');
         //var_dump($idcategoria);
+        $idCategoria=$_GET['cat'];
+        //var_dump($idCategoria);
         
         $actividades=$this->actividad_model->lista_actividades();
         $data['actividades']=$actividades;
         $ciudades=$this->anuncio_model->lista_ciudades();
         $data['ciudades']=$ciudades;
-        $camposcategorias=$this->camposcategoria_model->lista_camposcategorias(2);
+        
+        $camposcategorias=$this->camposcategoria_model->lista_camposcategorias($idCategoria);
         $data['camposcategorias']=$camposcategorias;
-       
+       //
         $this->load->view('inc/header_view3.php'); // archivos de cabecera
 		$this->load->view('anuncio_agregar',$data); // contenido
 		$this->load->view('inc/footer_view.php'); // archivos de footer (js)
