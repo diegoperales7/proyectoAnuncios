@@ -15,6 +15,8 @@ class Categoria extends CI_Controller {
        
             $idUsuario=$this->session->userdata('correo');
             $data['nombre']=$_POST['nombre'];
+            $data['icono']=$_POST['icono'];
+            $data['colorHover']=$_POST['colorHover'];
             $data['usuarioid']=$idUsuario;
            
             $this->categoria_model->insertar_categoria($data);

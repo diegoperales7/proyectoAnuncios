@@ -66,3 +66,9 @@
 	margin: 0;
 	
 }
+
+.optionColor{
+	background-color: tomato;
+	background: tomato;
+	color: tomato;
+}
