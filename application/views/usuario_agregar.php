@@ -44,18 +44,7 @@
                     <label for="InputCelular" class="form-label">Celular</label>
                     <input type="number" class="form-control" id="InputCelular" name="celular" placeholder="Escriba su Celular">
                 </div>
-                <div class="mb-3">
-                    <label for="Inputrol_idRol" class="form-label">Rol</label>
-                    <select class="form-control" name="idRol" >
-                        <option value="" selected>Seleccione un Rol</option>
-                        <?php
-                        foreach($roles->result() as $row){?>
-                            <option value="<?php echo $row->idRol; ?>"><?php echo $row->nombre; ?></option><?php
-                            
-                        }?>
-                        
-                    </select>
-                </div>
+                
 
                 <div class="d-grid gap-2 col-6 mx-auto">
                     <button class="btn btn-warning" type="submit">Registrar</button>
