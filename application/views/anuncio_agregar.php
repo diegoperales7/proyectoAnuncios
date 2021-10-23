@@ -75,12 +75,16 @@
                             <label for="InputFile" class="form-label" name="userfile">Seleccione una foto </label>
                             <input class="form-control" type="file" id="InputFile" name="userfile">
                         </div>
+                        <input type="hidden" name="idCategoria" value="<?php echo $idCategoria;?>">
+
 
                         <?php
                             foreach($camposcategorias->result() as $row){?>
                                 <div class="mb-3">
-                                    <label for="Input <?php echo $row->nombre?>" class="form-label"><?php echo $row->nombre; ?></label>
+                                    <label for="Input<?php echo $row->nombre?>" class="form-label"><?php echo $row->nombre; ?></label>
                                     <input class="form-control" type="text" id="Input<?php echo $row->nombre?>" name="<?php echo $row->nombre?>" placeholder="Escriba su <?php echo $row->nombre?>">
+                                    <input type="hidden" name="categoria_idCategoria" value="<?php echo $row->categoria_idCategoria;?>">
+
                                 </div><?php
                             }
 

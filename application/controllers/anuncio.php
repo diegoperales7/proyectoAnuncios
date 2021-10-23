@@ -18,13 +18,89 @@ class Anuncio extends CI_Controller {
         
         $camposcategorias=$this->camposcategoria_model->lista_camposcategorias($idCategoria);
         $data['camposcategorias']=$camposcategorias;
+        $data['idCategoria']=$idCategoria;
        //
         $this->load->view('inc/header_view3.php'); // archivos de cabecera
 		$this->load->view('anuncio_agregar',$data); // contenido
 		$this->load->view('inc/footer_view.php'); // archivos de footer (js)
     }
 
-    public function agregarbd(){
+    public function agregarbd()
+    {
+        $idUsuario=$this->session->userdata('idUsuario');
+        //$idCategoria=$_POST['categoria_idCategoria'];
+        $idCategoria=$_POST['idCategoria'];
+
+        
+        $data['codigo']="r";
+        $data['titulo']=$_POST['titulo'];
+        $data['precio']=$_POST['precio'];
+        $data['estado']=$_POST['estado'];
+        $data['descripcion']=$_POST['descripcion']; 
+        $data['usuario_idUsuario']=$idUsuario;
+        
+        $data['actividad_idActividad']=$_POST['actividad_idActividad'];
+        $data['ciudad_idCiudad']=$_POST['ciudad_idCiudad'];
+        $data['categoria_idCategoria']=$idCategoria;
+
+        $this->anuncio_model->insertar_anuncio($data);
+        $ultimoID=$this->db->insert_id();
+
+        $camposcategorias=$this->camposcategoria_model->lista_camposcategorias($idCategoria);
+        $data['camposcategorias']=$camposcategorias;
+
+        foreach($camposcategorias->result() as $row){
+            //$var=$row->nombre;
+            //var_dump($var);
+            $data2['valor']=$_POST[$row->nombre];
+            $data2['anuncio_idAnuncio']=$ultimoID;
+            $data2['camposcategoria_idCamposCategoria']=$row->idCamposCategoria;
+            $data2['usuarioid']=$idUsuario;
+            $this->anuncio_model->insertar_datosCategoria($data2);
+
+        }
+        
+
+        
+        $codigo='r'.str_pad($ultimoID,5,'0',STR_PAD_LEFT);
+        $data7['codigo']=$codigo;        
+        $this->anuncio_model->modificarAnuncio_fotoRegistro($ultimoID,$data7);
+        
+        $nombrearchivo=$ultimoID.".jpg";
+        
+        $config['upload_path']='./uploads/anuncio';
+        //nombre del archivo
+        $config['file_name']=$nombrearchivo;
+        
+        //reemplazar los archivos
+        $direccion=FCPATH."uploads\usuario\\".$nombrearchivo;
+        if(file_exists($direccion))
+        {     
+            unlink($direccion);      
+        }
+        
+        //tipos de archivos permitidos
+        $config['allowed_types']='jpg';//'gif|jpg|png';
+        $this->load->library('upload',$config);
+        
+        if (!$this->upload->do_upload())
+        {
+            //$data['error']=$this->upload->display_errors();
+            
+            redirect('usuario/panel','refresh');
+        }
+        else
+        {          
+            $data8['fotos']=$nombrearchivo;
+            
+            $this->anuncio_model->modificarAnuncio_fotoRegistro($ultimoID,$data8);
+            $this->upload->data();
+            redirect('usuario/panel','refresh');
+        }
+        
+    }
+
+    public function agregarbd2(){
         
         $idUsuario=$this->session->userdata('idUsuario');
         
@@ -369,7 +445,18 @@ class Anuncio extends CI_Controller {
 
     }
 
-
+    public function busquedacategoria()
+    {
+        $lista=$this->anuncio_model->lista_mis_anuncios();
+        $data['anuncios']=$lista;
+        $categorias=$this->categoria_model->lista_categorias();
+        $data['categorias']=$categorias;
+        
+       
+        $this->load->view('inc/header_view3.php'); // archivos de cabecera
+		$this->load->view('anuncio_busquedaCategoria',$data); // contenido
+		$this->load->view('inc/footer_view.php'); // archivos de footer (js)
+    }
 
 	
 }
