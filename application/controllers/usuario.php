@@ -284,6 +284,9 @@ class Usuario extends CI_Controller {
     {
         $lista=$this->anuncio_model->lista_mis_anuncios();
         $data['anuncios']=$lista;
+        //$idAnuncio=13;
+        $lista2=$this->anuncio_model->getdatosCategoria(13);
+        $data['datoscategoria']=$lista2;
 
 		$this->load->view('inc/header_view3.php'); // archivos de cabecera
 		$this->load->view('usuario_misAnuncios',$data); // contenido

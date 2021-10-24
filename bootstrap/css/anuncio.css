@@ -4,3 +4,150 @@
     margin-bottom: 5px;
     width: 100%;
 }
+
+.sb{
+    padding: 0px;
+    margin-bottom: 10px;
+}
+
+.pad{
+    
+    
+}
+.pad h5 a{
+    text-decoration: none;
+    color: #11123A;
+    
+}
+.pad h5 a:hover{
+    text-decoration: underline;
+    color: #1b1d92;
+    
+}
+.pad i{
+    margin-right: 15px;
+}
+
+.buscador{
+    border: darkgrey 1px solid;
+    border-radius: 5px;
+    padding:5px;
+    margin-bottom: 5px;
+    background: darkgrey;
+}
+
+.buscador input{
+    margin-bottom: 5px;
+}
+
+.borderAnuncio{
+    border: #11123A 1px solid;
+    border-radius: 5px;
+}
+.sectionCat{
+    border: #11123A 1px solid;
+    border-radius: 5px;
+    padding: 3%;
+    text-decoration: none;
+}
+.sectionCat span a{
+    text-decoration: none;
+    color: black;
+}
+.sectionCat span a:hover{
+    text-decoration: underline;
+    color: rgb(16, 8, 133);
+}
+
+.cabeza{
+    padding-left: 2%;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    
+    background-color: #11123A;
+    
+}
+.cabeza h6{
+        
+    color: whitesmoke;
+    font-weight: bold;
+    
+    
+}
+.cabeza span{
+    float: left;
+    padding-right: 2%;
+}
+.cuerpo{
+      
+    border-bottom: #11123A 1px solid;
+   
+    
+}
+
+.cuerpo h5{
+    color: #11123A;
+    font-weight: bold;
+    
+}
+.cuerpo i{
+    color: rgb(71, 71, 71);
+    
+}
+
+.pie{
+    
+    
+}
+
+.imgAnuncio{
+    margin-top: 3%;
+    
+    border-radius: 10px;
+    width: 95%;
+    height: 150px;
+    
+}
+
+
+.botonPie{
+    margin: 5px;
+    display: inline;
+    float: left; 
+    display: flex;
+    justify-content: center;
+    height: 30px;
+    width: 100px;
+    padding-top: 1px;
+}
+.precio{
+    margin-left: 5px;
+    color:crimson;
+    font-weight: bold;
+}
+
+.camposCat{
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 3px;
+margin-bottom: 0px;    
+}
+.camposCat li{
+    padding: 1px;
+    margin: 5px;
+    background-color: rgb(228, 228, 228);
+    border-radius: 5px;
+}
+.tam{
+    width: 100%;
+    
+    margin-left: 0px;
+    
+}
+
+.sbp{
+    margin: 0px;
+    padding: 0px;
+}
