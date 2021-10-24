@@ -38,15 +38,27 @@ class Anuncio_model extends CI_Model {
         $idUsuario=$this->session->userdata('idUsuario');
 
 		$this->db->select('*');
+        //$this->db->select('anuncio.idAnuncio,anuncio.codigo,anuncio.titulo,anuncio.precio,anuncio.estado,anuncio.descripcion,anuncio.fotos,anuncio.fechaRegistro,actividad.tipo,categoria.nombre,ciudad.ciudad');
         $this->db->from('anuncio');
         $this->db->where('anuncio.activo',1);
-        $this->db->where('usuario_idUsuario',$idUsuario);
-        $this->db->join('datoscategoria','datoscategoria.anuncio_idAnuncio=anuncio.idAnuncio');
+        $this->db->where('anuncio.usuario_idUsuario',$idUsuario);
+        $this->db->join('actividad','actividad.idActividad=anuncio.actividad_idActividad');
         $this->db->join('categoria','categoria.idCategoria=anuncio.categoria_idCategoria');
         $this->db->join('ciudad','ciudad.idCiudad=anuncio.ciudad_idCiudad');
-        $this->db->group_by('anuncio.idAnuncio');
+        
+        //$this->db->group_by('anuncio.idAnuncio');
+        
         return $this->db->get();
 	}
+    public function getdatosCategoria($idAnuncio)
+    {
+        $idUsuario=$this->session->userdata('idUsuario');
+        $this->db->select('datoscategoria.valor');
+        $this->db->from('datoscategoria');
+        $this->db->where('anuncio_idAnuncio',$idAnuncio);
+        $this->db->where('usuarioid',$idUsuario);
+        
+    }
 
     public function eliminarAnuncio($idAnuncio,$data)
     {
