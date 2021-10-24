@@ -18,6 +18,8 @@ class Categoria_model extends CI_Model {
 		$this->db->select('*');
         $this->db->from('categoria');
         $this->db->where('nombre !=','Todas');
+        $this->db->where('nombre !=','Empleos');
+        $this->db->where('nombre !=','Formacion');
         
         return $this->db->get();
 	}
