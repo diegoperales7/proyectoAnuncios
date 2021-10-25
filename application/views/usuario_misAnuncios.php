@@ -3,7 +3,7 @@
     <div class="row">
     
         <?php
-        foreach($anuncios->result() as $row){
+        foreach($anuncios as $row){
             ?>   
            
             <div class="col-6 offset-md-3 borderAnuncio sb" >
@@ -25,12 +25,16 @@
                             <img class="imgAnuncio" src="<?php echo base_url();?>uploads/anuncio/<?php echo $row->fotos?>" >
                         
                         </div>
+
+                          
                     </div> 
                      <ul class="camposCat"> 
-                     
-                        <li><span>Automatico</span></li>
-                        <li><span>Suzuki</span></li>
-                        <li><span>180000km</span></li>
+                        <?php
+                            foreach($row->datosCategoria as $rowCategoria){?>
+                                <li><span><?php echo $rowCategoria->valor;?></span></li><?php
+                            }
+                        ?> 
+                        
                         
                     </ul>
                     
@@ -40,7 +44,7 @@
                 
                 <div class="pie">
                     <a class="btn btn-primary botonPie" href="<?php echo base_url(); ?>index.php/usuario/logout">Editar</a>
-                    <a class="btn btn-danger botonPie" href="<?php echo base_url(); ?>index.php/usuario/logout">Eliminar</a>
+                    <a class="btn btn-danger botonPie" href="<?php echo base_url(); ?>index.php/anuncio/eliminar?var=<?php echo $row->idAnuncio?>">Eliminar</a>
                 </div>
                 
 

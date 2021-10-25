@@ -6,7 +6,8 @@ class Anuncio extends CI_Controller {
 	
     public function agregar()
     {
-        $idUsuario=$this->session->userdata('idUsuario');
+        
+        $idRol=$this->session->userdata('rol_idRol');
         //$idcategoria=$_GET('var');
         //var_dump($idcategoria);
         $idCategoria=$_GET['cat'];
@@ -20,10 +21,10 @@ class Anuncio extends CI_Controller {
         $camposcategorias=$this->camposcategoria_model->lista_camposcategorias($idCategoria);
         $data['camposcategorias']=$camposcategorias;
         $data['idCategoria']=$idCategoria;
-        if ($idUsuario==2) {
+        if ($idRol==2) {
             $this->load->view('inc/header_view2.php');     
         }
-        else
+        if ($idRol==3)
         {
             $this->load->view('inc/header_view3.php');
         }
@@ -305,6 +306,16 @@ class Anuncio extends CI_Controller {
             redirect('usuario/panel','refresh');
         }
         
+    }
+
+    public function eliminar(){
+        $idAnuncio=$_GET['var'];
+        $data['anuncio.activo']=0;
+        $data2['datoscategoria.activo']=0;
+        $this->anuncio_model->eliminarAnuncio($idAnuncio,$data);
+        $this->anuncio_model->eliminarDatosCategoria($idAnuncio,$data2);
+        
+        redirect('usuario/misAnuncios','refresh');
     }
 
     public function eliminar_anuncio_admi(){

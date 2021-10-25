@@ -53,10 +53,12 @@ class Anuncio_model extends CI_Model {
     public function getdatosCategoria($idAnuncio)
     {
         $idUsuario=$this->session->userdata('idUsuario');
+        
         $this->db->select('datoscategoria.valor');
         $this->db->from('datoscategoria');
         $this->db->where('anuncio_idAnuncio',$idAnuncio);
         $this->db->where('usuarioid',$idUsuario);
+        return $this->db->get();
         
     }
 
@@ -65,6 +67,15 @@ class Anuncio_model extends CI_Model {
         
         $this->db->where('idAnuncio',$idAnuncio);
         $this->db->update('anuncio',$data);
+        //$this->db->delete('usuario');
+        
+    }
+
+    public function eliminarDatosCategoria($idAnuncio,$data)
+    {
+        
+        $this->db->where('anuncio_idAnuncio',$idAnuncio);
+        $this->db->update('datoscategoria',$data);
         //$this->db->delete('usuario');
         
     }
