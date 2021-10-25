@@ -1,9 +1,7 @@
 
 
 
-<script src="<?php echo base_url(); ?>bootstrap/js/bootstrap.js"></script>
 
-<script src="https://kit.fontawesome.com/0b0aaf346f.js" crossorigin="anonymous"></script>
 
 
 
@@ -78,9 +76,12 @@
   
 </footer>
 
+<script src="<?php echo base_url(); ?>bootstrap/js/jquery-3.6.0.min.js"></script>
+<script src="<?php echo base_url(); ?>bootstrap/js/jquery.validate.min.js"></script>
 
-
-
+<script src="<?php echo base_url(); ?>bootstrap/js/bootstrap.js"></script>
+<script src="<?php echo base_url(); ?>bootstrap/js/usuario.js"></script>
+<script src="https://kit.fontawesome.com/0b0aaf346f.js" crossorigin="anonymous"></script>
 
 </body>
 

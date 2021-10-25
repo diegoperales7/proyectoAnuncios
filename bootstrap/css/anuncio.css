@@ -47,16 +47,29 @@
 .sectionCat{
     border: #11123A 1px solid;
     border-radius: 5px;
-    padding: 3%;
+    padding: 0px;
     text-decoration: none;
+    
 }
-.sectionCat span a{
+.sectionCat ol{
+    font-weight: bold;
+}
+.sectionCat li{
+    border-top: #11123A 1px solid;
+    
+    padding: 10px;
+    margin: 0px;
+    list-style-type: none;
+}
+.sectionCat a{
+    
     text-decoration: none;
     color: black;
 }
-.sectionCat span a:hover{
+.sectionCat a li:hover{
     text-decoration: underline;
     color: rgb(16, 8, 133);
+    background-color: rgb(160, 156, 156) ;
 }
 
 .cabeza{
@@ -150,4 +163,21 @@ margin-bottom: 0px;
 .sbp{
     margin: 0px;
     padding: 0px;
+}
+
+.busquedaCat{
+    display: inline-block;
+    text-align: center;
+    padding: 5px;
+    margin: 5px;
+}
+.busquedaCat input{
+    width: 23%;
+    border-radius: 3px;
+    border: none;
+    
+}
+
+.form-control:focus{
+    box-shadow: none;
 }

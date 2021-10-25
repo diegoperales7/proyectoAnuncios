@@ -9,7 +9,7 @@
     <h2 align="center">Registro de Usuarios</h2>
         <?php 
             
-                echo form_open_multipart('usuario/agregarbd');
+                echo form_open_multipart('usuario/agregarbd',array('id' => 'formRegistroUsuario'));
                 ?>
 
 
@@ -47,7 +47,7 @@
                 
 
                 <div class="d-grid gap-2 col-6 mx-auto">
-                    <button class="btn btn-warning" type="submit">Registrar</button>
+                    <button class="btn btn-warning btnRegistrar" type="submit">Registrar</button>
                 </div>
                 
                
