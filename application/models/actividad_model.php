@@ -3,6 +3,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Actividad_model extends CI_Model {
 
+    public function lista()
+	{
+		$this->db->select('*');
+        $this->db->from('actividad');
+        $this->db->where('actividad.activo',1);
+
+        return $this->db->get();
+	}
+
 	
 	public function lista_actividades()
 	{

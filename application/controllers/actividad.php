@@ -6,7 +6,7 @@ class Actividad extends CI_Controller {
 	
     public function lista()
     {
-        $lista=$this->actividad_model->lista_actividades();
+        $lista=$this->actividad_model->lista();
         $data['actividades']=$lista;
 
 		$this->load->view('inc/header_view2.php'); // archivos de cabecera

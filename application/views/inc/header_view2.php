@@ -11,24 +11,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>bootstrap/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>bootstrap/css/index.css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>bootstrap/css/reportes.css">
-    
-
-
-	
-
-
-
-
-
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>bootstrap/css/anuncio.css">
 
 </head>
 <body>
 
-
-
 <nav class="navbar navbar-dark navbar-expand-lg" style="background-color: #11123A">
   <div class="container-fluid">
-  <img src="<?php echo base_url(); ?>bootstrap/img/logo.jpg" width="45" height="45" class="d-inline-block align-text-top">
+    <img src="<?php echo base_url(); ?>bootstrap/img/logo.jpg" width="45" height="45" class="d-inline-block align-text-top">
     <a class="navbar-brand" href="#" style="color:#FFC300;">Clasificados Online Bolivia</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -44,7 +34,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="true" style="color:white">
-		  Gestionar
+		        Gestionar
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href="<?php echo base_url(); ?>index.php/usuario/index">Roles</a></li>
