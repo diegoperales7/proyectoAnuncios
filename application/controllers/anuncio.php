@@ -470,23 +470,93 @@ class Anuncio extends CI_Controller {
 
         //redirect('usuario/index','refresh');
     }
-  
-    
-
-    
 
     public function busquedacategoria()
     {
-        $lista=$this->anuncio_model->lista_mis_anuncios();
-        $data['anuncios']=$lista;
+        $idRol=$this->session->userdata('rol_idRol');
+        $anuncios=null;
+        $idCategoria=$_GET['cat'];
+        if ($idCategoria==10)
+        {
+            $lista=$this->anuncio_model->listaTodosLosAnuncios();
+        }else
+        {
+            $lista=$this->anuncio_model->listaAnunciosCategoria($idCategoria);
+        }
+        $camposcategorias=$this->camposcategoria_model->lista_camposcategorias($idCategoria);
+        $data['camposcategorias']=$camposcategorias;
+        
+        foreach($lista->result() as $row){      
+            
+            $datosCategoria=$this->anuncio_model->getdatosCategoria($row->idAnuncio,$row->usuario_idUsuario);
+                  
+            $row->datosCategoria=$datosCategoria->result();
+            $anuncios[]=$row;
+            
+
+        }
+        //var_dump($anuncios);
+        $data['anuncios']=$anuncios;
+        $data['idCategoria']=$idCategoria;
+        // $lista=$this->anuncio_model->lista_mis_anuncios();
+        // $data['anuncios']=$lista;
         $categorias=$this->categoria_model->lista_categorias();
         $data['categorias']=$categorias;
-        
-       
-        $this->load->view('inc/header_view3.php'); // archivos de cabecera
+
+        $ciudades=$this->anuncio_model->lista_ciudades();
+        $data['ciudades']=$ciudades;
+
+        if ($idRol==2) {
+            $this->load->view('inc/header_view2.php');     
+        }
+        if ($idRol==3)
+        {
+            $this->load->view('inc/header_view3.php');
+        }
+        if ($idRol==null) {
+            $this->load->view('inc/header_view.php');
+        }
 		$this->load->view('anuncio_busquedaCategoria',$data); // contenido
 		$this->load->view('inc/footer_view.php'); // archivos de footer (js)
     }
+
+    public function resultadoAnuncio()
+    {
+        $anuncios=null;
+        $lista=$this->anuncio_model->lista_mis_anuncios();
+        $idCategoria=$_POST['idCategoria'];
+        $idCamposCategoria=null;
+        $campo_1=$_POST['campos'];
+        //var_dump($campo_1);
+        foreach ($campo_1 as $key => $item) {
+            //print_r($key);
+            print_r($item['name']);
+            print_r($item['value']);
+            print_r('++++++');
+        }
+        // if ($campo_1!="") {
+        //     $query="orhwere campo 1";
+        // }
+        // $campo_2=$_POST['campo_'.$idCamposCategoria];
+        // if ($campo_2!="") {
+            
+        // }
+        print_r($idCategoria);
+        foreach($lista->result() as $row){
+            
+            $datosCategoria=$this->anuncio_model->getdatosCategoria($row->idAnuncio);
+            
+            $row->datosCategoria=$datosCategoria->result();
+            $anuncios[]=$row;
+
+        }
+      
+        $data['anuncios']=$anuncios;
+    
+		$this->load->view('anuncio_resultAnuncio',$data); // contenido
+    }
+
+
 
 	
 }

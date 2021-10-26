@@ -14,6 +14,8 @@ class Anuncio_model extends CI_Model {
         $this->db->join('categoria','categoria.idCategoria=datoscategoria.categoria_idCategoria','left');
         $this->db->join('ciudad','ciudad.idCiudad=anuncio.ciudad_idCiudad','left');
         $this->db->group_by('anuncio.idAnuncio');
+        $this->db->order_by("anuncio.fechaRegistro", "desc");
+
         return $this->db->get();
 	}
 
@@ -37,22 +39,52 @@ class Anuncio_model extends CI_Model {
 	{
         $idUsuario=$this->session->userdata('idUsuario');
 
-		$this->db->select('*');
-        //$this->db->select('anuncio.idAnuncio,anuncio.codigo,anuncio.titulo,anuncio.precio,anuncio.estado,anuncio.descripcion,anuncio.fotos,anuncio.fechaRegistro,actividad.tipo,categoria.nombre,ciudad.ciudad');
+		//$this->db->select('*');
+        $this->db->select('anuncio.idAnuncio,anuncio.codigo,anuncio.titulo,anuncio.precio,anuncio.estado,anuncio.descripcion,anuncio.fotos,anuncio.fechaRegistro,actividad.tipo,categoria.nombre,ciudad.ciudad');
         $this->db->from('anuncio');
         $this->db->where('anuncio.activo',1);
         $this->db->where('anuncio.usuario_idUsuario',$idUsuario);
         $this->db->join('actividad','actividad.idActividad=anuncio.actividad_idActividad');
         $this->db->join('categoria','categoria.idCategoria=anuncio.categoria_idCategoria');
         $this->db->join('ciudad','ciudad.idCiudad=anuncio.ciudad_idCiudad');
+        $this->db->order_by("anuncio.fechaRegistro", "desc");
         
         //$this->db->group_by('anuncio.idAnuncio');
         
         return $this->db->get();
 	}
-    public function getdatosCategoria($idAnuncio)
+    
+    public function listaAnunciosCategoria($idCategoria)
+	{
+		//$this->db->select('*');
+        $this->db->select('anuncio.idAnuncio,anuncio.codigo,anuncio.titulo,anuncio.precio,anuncio.estado,anuncio.descripcion,anuncio.fotos,anuncio.fechaRegistro,anuncio.usuario_idUsuario,actividad.tipo,categoria.nombre,ciudad.ciudad');
+        $this->db->from('anuncio');
+        $this->db->where('anuncio.activo',1);
+        $this->db->where('anuncio.categoria_idCategoria',$idCategoria);
+        $this->db->join('actividad','actividad.idActividad=anuncio.actividad_idActividad');
+        $this->db->join('categoria','categoria.idCategoria=anuncio.categoria_idCategoria');
+        $this->db->join('ciudad','ciudad.idCiudad=anuncio.ciudad_idCiudad');  
+        $this->db->order_by("anuncio.fechaRegistro", "desc");
+ 
+        return $this->db->get();
+	}
+
+    public function listaTodosLosAnuncios()
+	{
+		//$this->db->select('*');
+        $this->db->select('anuncio.idAnuncio,anuncio.codigo,anuncio.titulo,anuncio.precio,anuncio.estado,anuncio.descripcion,anuncio.fotos,anuncio.fechaRegistro,anuncio.usuario_idUsuario,actividad.tipo,categoria.nombre,ciudad.ciudad');
+        $this->db->from('anuncio');
+        $this->db->where('anuncio.activo',1);
+        $this->db->join('actividad','actividad.idActividad=anuncio.actividad_idActividad');
+        $this->db->join('categoria','categoria.idCategoria=anuncio.categoria_idCategoria');
+        $this->db->join('ciudad','ciudad.idCiudad=anuncio.ciudad_idCiudad');  
+        $this->db->order_by("anuncio.fechaRegistro", "desc");
+ 
+        return $this->db->get();
+	}
+    public function getdatosCategoria($idAnuncio,$idUsuario)
     {
-        $idUsuario=$this->session->userdata('idUsuario');
+        //$idUsuario=$this->session->userdata('idUsuario');
         
         $this->db->select('datoscategoria.valor');
         $this->db->from('datoscategoria');

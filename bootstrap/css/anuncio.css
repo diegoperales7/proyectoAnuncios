@@ -166,18 +166,27 @@ margin-bottom: 0px;
 }
 
 .busquedaCat{
+    width: 90%;
     display: inline-block;
-    text-align: center;
-    padding: 5px;
-    margin: 5px;
+    
+}
+.busquedaCat label{
+    width: 100px;
+    margin-left: 50px;
 }
 .busquedaCat input{
     width: 23%;
     border-radius: 3px;
-    border: none;
-    
+    border: none;  
 }
-
+.busquedaCat select{
+    width: 23%;
+    border-radius: 3px;
+    border: none;  
+}
+.busquedaCat button{
+    margin-left: 50px;
+}
 .form-control:focus{
     box-shadow: none;
 }
