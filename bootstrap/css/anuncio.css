@@ -10,10 +10,7 @@
     margin-bottom: 10px;
 }
 
-.pad{
-    
-    
-}
+
 .pad h5 a{
     text-decoration: none;
     color: #11123A;
@@ -109,9 +106,10 @@
     
 }
 
-.pie{
+.pie a i{
     
-    
+    margin-top: auto;
+    margin-right: 5px;
 }
 
 .imgAnuncio{
@@ -131,7 +129,7 @@
     display: flex;
     justify-content: center;
     height: 30px;
-    width: 100px;
+    width: 120px;
     padding-top: 1px;
 }
 .precio{
