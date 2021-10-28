@@ -58,7 +58,7 @@
                                     <div class="cuerpo">
                                         <div class="row tam">
                                             <div class="col-9 pad">
-                                                <h5><a href=""><?php echo $row->titulo;?></a> </h5>
+                                                <h5><a href="<?php echo base_url(); ?>index.php/anuncio/info"><?php echo $row->titulo;?></a> </h5>
                                                 <i class="fas fa-list-ul "> <?php echo $row->nombre;?></i>
                                                 <i class="fas fa-map-marked-alt"> <?php echo $row->ciudad;?></i>
                                                 <p><?php echo $row->descripcion;?></p>

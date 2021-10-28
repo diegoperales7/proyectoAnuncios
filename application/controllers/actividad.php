@@ -9,7 +9,7 @@ class Actividad extends CI_Controller {
         $lista=$this->actividad_model->lista();
         $data['actividades']=$lista;
 
-		$this->load->view('inc/header_view2.php'); // archivos de cabecera
+		$this->load->view('inc/header_viewAdmi.php'); // archivos de cabecera
 		$this->load->view('actividad_lista',$data); // contenido
 		$this->load->view('inc/footer_view.php');
      
@@ -18,7 +18,7 @@ class Actividad extends CI_Controller {
 
     public function agregar()
     {
-        $this->load->view('inc/header_view3.php'); // archivos de cabecera
+        $this->load->view('inc/header_viewAdmi.php'); // archivos de cabecera
 		$this->load->view('actividad_agregar'); // contenido
 		$this->load->view('inc/footer_view.php'); // archivos de footer (js)
     }
@@ -84,12 +84,9 @@ class Actividad extends CI_Controller {
 
         $data['infoactividad']=$this->actividad_model->recuperarActividad($idActividad);
         
-        $this->load->view('inc/header_view.php'); // archivos de cabecera
+        $this->load->view('inc/header_viewAdmi.php'); // archivos de cabecera
 		$this->load->view('actividad_modificar',$data); // contenido
 		$this->load->view('inc/footer_view.php'); // archivos de footer (js)
     }
     
-
-
-	
 }

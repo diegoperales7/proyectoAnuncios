@@ -37,10 +37,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		        Gestionar
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="<?php echo base_url(); ?>index.php/usuario/panel">Editar Perfil</a></li>
-            <li><a class="dropdown-item" href="<?php echo base_url(); ?>index.php/usuario/misAnuncios">Mis Anuncios</a></li>            
-            <li><a class="dropdown-item" href="">Configuracion de suscripcion</a></li>
-            
+            <li><a class="dropdown-item" href="<?php echo base_url(); ?>index.php/usuario/index">Roles</a></li>
+            <li><a class="dropdown-item" href="<?php echo base_url(); ?>index.php/actividad/lista">Actividades</a></li>
+            <li><a class="dropdown-item" href="">Modos Premium</a></li>
+            <li><a class="dropdown-item" href="">Metodos de pago</a></li>
+            <li><a class="dropdown-item" href="">Ciudades</a></li>
+            <li><a class="dropdown-item" href="<?php echo base_url(); ?>index.php/categoria/mostrar_lista"">Categorias</a></li>
+            <li><a class="dropdown-item" href="">Caracteristicas categorias</a></li>
+            <li><a class="dropdown-item" href="<?php echo base_url(); ?>index.php/usuario/lista_anuncios_admi">Lista Anuncios</a></li>
+            <li><a class="dropdown-item" href="<?php echo base_url(); ?>index.php/usuario/listar_usuario">Lista Usuarios</a></li>
             
           </ul>
         </li>

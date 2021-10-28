@@ -32,22 +32,16 @@ class Usuario extends CI_Controller {
         $data['idUsuario']=$_POST['idUsuario'];
         $data['infousuario']=$this->usuario_model->recuperarUsuario($idUsuario);
         
-        $this->load->view('inc/header_view.php'); // archivos de cabecera
+        $this->load->view('inc/header_viewAdmi.php'); // archivos de cabecera
 		$this->load->view('usuario_modificarAdmi',$data); // contenido
 		$this->load->view('inc/footer_view.php'); // archivos de footer (js)
     }
 
-
-
-   
-
     public function agregar()
     {
-        
-
         $roles=$this->usuario_model->lista_roles();
         $data['roles']=$roles;
-        $this->load->view('inc/header_view.php'); // archivos de cabecera
+        $this->load->view('inc/header_viewAdmi.php'); // archivos de cabecera
 		$this->load->view('usuario_agregar',$data); // contenido
 		$this->load->view('inc/footer_view.php'); // archivos de footer (js)
     }
@@ -85,7 +79,7 @@ class Usuario extends CI_Controller {
         $lista=$this->usuario_model->lista_usuarios();
         $data['usuarios']=$lista;
 
-		$this->load->view('inc/header_view2.php'); // archivos de cabecera
+		$this->load->view('inc/header_viewAdmi.php'); // archivos de cabecera
 		$this->load->view('usuario_lista',$data); // contenido
 		$this->load->view('inc/footer_view.php'); // archivos de footer (js)
         
@@ -138,6 +132,7 @@ class Usuario extends CI_Controller {
                 {
                     redirect('usuario/usuario_normal','refresh');  
                 }         
+                   
         }
         else
         {
@@ -192,10 +187,20 @@ class Usuario extends CI_Controller {
 
     public function usuario_normal()
 	{
+        $idRol=$this->session->userdata('rol_idRol');
         $lista=$this->categoria_model->lista_categorias();
         $data['categorias']=$lista;
 
-		$this->load->view('inc/header_view3.php'); // archivos de cabecera
+        if ($idRol==2) {
+            $this->load->view('inc/header_view2.php');//usuario premium
+        }
+        if ($idRol==3)
+        {
+            $this->load->view('inc/header_view3.php');//usuario normal
+        }
+        if ($idRol==null) {
+            $this->load->view('inc/header_view.php');//sin registro
+        }
 		$this->load->view('usuario_normal',$data); // contenido
 		$this->load->view('inc/footer_view.php'); // archivos de footer (js)
 	}
@@ -260,10 +265,6 @@ class Usuario extends CI_Controller {
             redirect('usuario/listar_usuario','refresh');
 
         }
-        
-
-         
-
         //redirect('usuario/index','refresh');
     }
 
@@ -273,7 +274,7 @@ class Usuario extends CI_Controller {
         $lista=$this->anuncio_model->lista_anuncio_admi();
         $data['anuncios']=$lista;
 
-		$this->load->view('inc/header_view2.php'); // archivos de cabecera
+		$this->load->view('inc/header_viewAdmi.php'); // archivos de cabecera
 		$this->load->view('admin_reportes_anuncio',$data); // contenido
 		$this->load->view('inc/footer_view.php');
 
@@ -285,6 +286,7 @@ class Usuario extends CI_Controller {
     public function misAnuncios()
     {
         $idUsuario=$this->session->userdata('idUsuario');
+        $idRol=$this->session->userdata('rol_idRol');
 
         $anuncios=null;
         $lista=$this->anuncio_model->lista_mis_anuncios();
@@ -306,7 +308,16 @@ class Usuario extends CI_Controller {
         //$lista2=$this->anuncio_model->getdatosCategoria(13);
         //$data['datoscategoria']=$lista2;
 
-		$this->load->view('inc/header_view3.php'); // archivos de cabecera
+        if ($idRol==2) {
+            $this->load->view('inc/header_view2.php');//usuario premium
+        }
+        if ($idRol==3)
+        {
+            $this->load->view('inc/header_view3.php');//usuario normal
+        }
+        if ($idRol==null) {
+            $this->load->view('inc/header_view.php');//sin registro
+        } // archivos de cabecera
 		$this->load->view('usuario_misAnuncios',$data); // contenido
 		$this->load->view('inc/footer_view.php');
      

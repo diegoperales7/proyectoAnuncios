@@ -22,11 +22,14 @@ class Anuncio extends CI_Controller {
         $data['camposcategorias']=$camposcategorias;
         $data['idCategoria']=$idCategoria;
         if ($idRol==2) {
-            $this->load->view('inc/header_view2.php');     
+            $this->load->view('inc/header_view2.php');//usuario premium
         }
         if ($idRol==3)
         {
-            $this->load->view('inc/header_view3.php');
+            $this->load->view('inc/header_view3.php');//usuario normal
+        }
+        if ($idRol==null) {
+            $this->load->view('inc/header_view.php');//sin registro
         }
         // archivos de cabecera
 		$this->load->view('anuncio_agregar',$data); // contenido
@@ -112,6 +115,7 @@ class Anuncio extends CI_Controller {
     public function agregar_empleo()
     {
         $idUsuario=$this->session->userdata('idUsuario');
+        $idRol=$this->session->userdata('rol_idRol');
 
         $idCategoria=$_GET['cat'];
 
@@ -125,12 +129,15 @@ class Anuncio extends CI_Controller {
         $data['camposcategorias']=$camposcategorias;
         $data['idCategoria']=$idCategoria;
        
-        if ($idUsuario==2) {
-            $this->load->view('inc/header_view2.php');     
+        if ($idRol==2) {
+            $this->load->view('inc/header_view2.php');//usuario premium
         }
-        else
+        if ($idRol==3)
         {
-            $this->load->view('inc/header_view3.php');
+            $this->load->view('inc/header_view3.php');//usuario normal
+        }
+        if ($idRol==null) {
+            $this->load->view('inc/header_view.php');//sin registro
         }
 		$this->load->view('anuncio_agregar_empleo',$data); // contenido
 		$this->load->view('inc/footer_view.php'); // archivos de footer (js)
@@ -212,6 +219,7 @@ class Anuncio extends CI_Controller {
     public function agregar_formacion()
     {
         $idUsuario=$this->session->userdata('idUsuario');
+        $idRol=$this->session->userdata('rol_idRol');
 
         $idCategoria=$_GET['cat'];
 
@@ -225,12 +233,15 @@ class Anuncio extends CI_Controller {
         $data['camposcategorias']=$camposcategorias;
         $data['idCategoria']=$idCategoria;
        
-        if ($idUsuario==2) {
-            $this->load->view('inc/header_view2.php');     
+        if ($idRol==2) {
+            $this->load->view('inc/header_view2.php');//usuario premium
         }
-        else
+        if ($idRol==3)
         {
-            $this->load->view('inc/header_view3.php');
+            $this->load->view('inc/header_view3.php');//usuario normal
+        }
+        if ($idRol==null) {
+            $this->load->view('inc/header_view.php');//sin registro
         }
 		$this->load->view('anuncio_agregar_formacion',$data); // contenido
 		$this->load->view('inc/footer_view.php'); // archivos de footer (js)
@@ -338,22 +349,14 @@ class Anuncio extends CI_Controller {
 
     public function modificar_anuncio_admi()
     {
-        $idUsuario=$this->session->userdata('idUsuario');
 
-        //$idUsuario=$_POST['idUsuario'];
-        //$data2['idUsuario']=$_POST['idUsuario'];
         $idAnuncio=$_POST['idAnuncio'];
 
         $data['idAnuncio']=$_POST['idAnuncio'];
         $data['infoanuncio']=$this->anuncio_model->recuperarAnuncio($idAnuncio);
 
-        if ($idUsuario==2) {
-            $this->load->view('inc/header_view2.php');     
-        }
-        else
-        {
-            $this->load->view('inc/header_view3.php');
-        }
+        
+        $this->load->view('inc/header_viewAdmi.php');
 		$this->load->view('anuncio_lista_modificarAdmi',$data); // contenido
 		$this->load->view('inc/footer_view.php'); // archivos de footer (js)
     }
@@ -508,14 +511,14 @@ class Anuncio extends CI_Controller {
         $data['ciudades']=$ciudades;
 
         if ($idRol==2) {
-            $this->load->view('inc/header_view2.php');     
+            $this->load->view('inc/header_view2.php');//usuario premium
         }
         if ($idRol==3)
         {
-            $this->load->view('inc/header_view3.php');
+            $this->load->view('inc/header_view3.php');//usuario normal
         }
         if ($idRol==null) {
-            $this->load->view('inc/header_view.php');
+            $this->load->view('inc/header_view.php');//sin registro
         }
 		$this->load->view('anuncio_listado',$data); // contenido
 		$this->load->view('inc/footer_view.php'); // archivos de footer (js)
@@ -603,17 +606,38 @@ class Anuncio extends CI_Controller {
         // $data['ciudades']=$ciudades;
 
         if ($idRol==2) {
-            $this->load->view('inc/header_view2.php');     
+            $this->load->view('inc/header_view2.php');//usuario premium
         }
         if ($idRol==3)
         {
-            $this->load->view('inc/header_view3.php');
+            $this->load->view('inc/header_view3.php');//usuario normal
         }
         if ($idRol==null) {
-            $this->load->view('inc/header_view.php');
+            $this->load->view('inc/header_view.php');//sin registro
         }
 		$this->load->view('anuncio_listado',$data); // contenido
 		$this->load->view('inc/footer_view.php'); // archivos de footer (js)
+    }
+
+
+    public function info()
+    {
+        $idRol=$this->session->userdata('rol_idRol');
+        
+
+        if ($idRol==2) {
+            $this->load->view('inc/header_view2.php');//usuario premium
+        }
+        if ($idRol==3)
+        {
+            $this->load->view('inc/header_view3.php');//usuario normal
+        }
+        if ($idRol==null) {
+            $this->load->view('inc/header_view.php');//sin registro
+        }
+		$this->load->view('anuncio_listado'); // contenido
+		$this->load->view('inc/footer_view.php'); // archivos de footer (js)
+        
     }
 
 

@@ -6,10 +6,20 @@ class Welcome extends CI_Controller {
 
 	public function index()
 	{
+		$idRol=$this->session->userdata('rol_idRol');
 		$lista=$this->categoria_model->lista_categorias();
         $data['categorias']=$lista;
 
-		$this->load->view('/inc/header_view.php');
+		 if ($idRol==2) {
+            $this->load->view('inc/header_view2.php');//usuario premium
+        }
+        if ($idRol==3)
+        {
+            $this->load->view('inc/header_view3.php');//usuario normal
+        }
+        if ($idRol==null) {
+            $this->load->view('inc/header_view.php');//sin registro
+        }
 		$this->load->view('welcome_message',$data);
 		$this->load->view('/inc/footer_view.php');
 	}

@@ -6,7 +6,7 @@ class Categoria extends CI_Controller {
 
     public function agregar()
     {
-        $this->load->view('inc/header_view2.php'); // archivos de cabecera
+        $this->load->view('inc/header_viewAdmi.php'); // archivos de cabecera
 		$this->load->view('categoria_agregar'); // contenido
 		$this->load->view('inc/footer_view.php'); // archivos de footer (js)
     }
@@ -39,10 +39,23 @@ class Categoria extends CI_Controller {
 	
 	public function lista()
     {
+        $idRol=$this->session->userdata('rol_idRol');
         $categorias=$this->categoria_model->lista_elegirCategoria();
         $data['categorias']=$categorias;
        
-        $this->load->view('inc/header_view2.php'); // archivos de cabecera
+        if ($idRol==1) {
+            $this->load->view('inc/header_viewAdmi.php');//usuario premium
+        }
+        if ($idRol==2) {
+            $this->load->view('inc/header_view2.php');//usuario premium
+        }
+        if ($idRol==3)
+        {
+            $this->load->view('inc/header_view3.php');//usuario normal
+        }
+        if ($idRol==null) {
+            $this->load->view('inc/header_view.php');//sin registro
+        }
 		$this->load->view('categoria_seleccionar',$data); // contenido
 		$this->load->view('inc/footer_view.php'); // archivos de footer (js)
     }
@@ -53,7 +66,7 @@ class Categoria extends CI_Controller {
         $data['categorias']=$categorias;
         
        
-        $this->load->view('inc/header_view2.php'); // archivos de cabecera
+        $this->load->view('inc/header_viewAdmi.php'); // archivos de cabecera
 		$this->load->view('categoria_lista',$data); // contenido
 		$this->load->view('inc/footer_view.php'); // archivos de footer (js)
     }
@@ -83,7 +96,7 @@ class Categoria extends CI_Controller {
 
         $data['infocategoria']=$this->categoria_model->recuperarCategoria($idCategoria);
         
-        $this->load->view('inc/header_view2.php'); // archivos de cabecera
+        $this->load->view('inc/header_viewAdmi.php'); // archivos de cabecera
 		$this->load->view('categoria_modificar',$data); // contenido
 		$this->load->view('inc/footer_view.php'); // archivos de footer (js)
     }

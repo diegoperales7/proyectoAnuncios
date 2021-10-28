@@ -22,8 +22,22 @@
                             
                         </div>
                         <div class="col-3 sbp">
-                            <img class="imgAnuncio" src="<?php echo base_url();?>uploads/anuncio/<?php echo $row->fotos?>" >
-                        
+                            <?php
+                                $foto=$row->fotos;
+                                    if ($foto=="") {
+                                        // mostrar foto por defecto
+                                        ?>
+                                        <img class="imgAnuncio" src="<?php echo base_url();?>uploads/anuncio/perfil.jpg">
+                                        <?php
+                                    }
+                                    else{
+                                        //mostrar foto del usuario 
+                                        ?>
+                                        <img class="imgAnuncio" src="<?php echo base_url();?>uploads/anuncio/<?php echo $row->fotos?>" >
+                                        <?php
+                                    }
+                                
+                            ?>                          
                         </div>
 
                           

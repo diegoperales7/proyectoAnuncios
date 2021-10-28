@@ -47,8 +47,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
           <li><a class="dropdown-item" href="<?php echo base_url(); ?>index.php/usuario/panel">Editar Perfil</a></li>
-            <li><a class="dropdown-item" href="<?php echo base_url(); ?>index.php/actividad/lista">Editar Anuncios</a></li>
-           <li><a class="dropdown-item" href="<?php echo base_url(); ?>index.php/usuario/lista_anuncios_admi">Ser Premium</a></li>
+            <li><a class="dropdown-item" href="<?php echo base_url(); ?>index.php/usuario/misAnuncios">Mis Anuncios</a></li>
+           <li><a class="dropdown-item" href="<?php echo base_url(); ?>index.php/usuario/panel">Ser Premium</a></li>
           </ul>
         </li>
         <li class="nav-item">
