@@ -6,7 +6,7 @@
         foreach($anuncios as $row){
             ?>   
            
-            <div class="col-6 offset-md-3 borderAnuncio sb" >
+            <div class="col-8 borderAnuncio sb listAnuncios" >
                 <div class="cabeza">
                     <h6><?php echo $row->tipo;?></h6>
                     <span><?php echo $row->codigo;?></span>
@@ -21,7 +21,7 @@
                             <p><?php echo $row->descripcion;?></p>
                             
                         </div>
-                        <div class="col-3 sbp">
+                        <div class="col-3 ">
                             <?php
                                 $foto=$row->fotos;
                                     if ($foto=="") {

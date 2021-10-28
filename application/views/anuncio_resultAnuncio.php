@@ -24,7 +24,7 @@
                                 <i class="fas fa-map-marked-alt"> <?php echo $row->ciudad;?></i>
                                 <p><?php echo $row->descripcion;?></p>     
                             </div>
-                            <div class="col-3 sb">
+                            <div class="col-3">
                                 <?php
                                 $foto=$row->fotos;
                                     if ($foto=="") {
