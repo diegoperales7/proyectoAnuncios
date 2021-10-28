@@ -49,7 +49,7 @@
                             <div class="mb-3">
                                 <label for="InputCiudad" class="form-label">Ciudad</label>
                                 <select class="form-control" name="ciudad_idCiudad" >
-                                    <option value="" selected>Seleccione una ciudad</option>
+                                    <option value="0" selected>Seleccione una ciudad</option>
                                     <?php
                                     foreach($ciudades->result() as $row){?>
                                         <option value="<?php echo $row->idCiudad; ?>"><?php echo $row->ciudad; ?></option><?php

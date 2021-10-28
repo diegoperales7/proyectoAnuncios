@@ -86,7 +86,7 @@ class Usuario extends CI_Controller {
         $data['usuarios']=$lista;
 
 		$this->load->view('inc/header_view2.php'); // archivos de cabecera
-		$this->load->view('reportes',$data); // contenido
+		$this->load->view('usuario_lista',$data); // contenido
 		$this->load->view('inc/footer_view.php'); // archivos de footer (js)
         
     }
@@ -284,13 +284,15 @@ class Usuario extends CI_Controller {
 
     public function misAnuncios()
     {
+        $idUsuario=$this->session->userdata('idUsuario');
+
         $anuncios=null;
         $lista=$this->anuncio_model->lista_mis_anuncios();
         foreach($lista->result() as $row){
             
             //print_r($row->idAnuncio);
             //print_r('<br>');
-            $datosCategoria=$this->anuncio_model->getdatosCategoria($row->idAnuncio);
+            $datosCategoria=$this->anuncio_model->getdatosCategoria($row->idAnuncio,$idUsuario);
             //print_r('<br>');
             //var_dump($datosCategoria->result());
             

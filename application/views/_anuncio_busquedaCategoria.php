@@ -5,9 +5,6 @@
             <div class="col-9 " >
                 <div class="row">
                     <div class="buscador">
-                        <?php if (isset($tipoBuscador) && $tipoBuscador=='general') {
-                            include_once "inc/buscador_view.php";
-                        }else{?>
                         <form id="formCamposCategoria" action="">    
                             <input name="anuncio.titulo" class="form-control" type="search" placeholder="Buscar" aria-label="Search">
                             <div class="busquedaCat">
@@ -38,9 +35,6 @@
                                 <button id="btnFiltroCategoria" data-idCategoria="<?php echo $idCategoria;?>" class="btn btn-primary" type="submit">Buscar</button>
                             </div>                         
                         </form>
-
-                        <?php }?>
-                        
                     </div>
                 </div>
                 <div class="row" id="resultadoFiltroCategoria">         
@@ -65,22 +59,8 @@
                                                 
                                             </div>
                                             <div class="col-3 sb">
-                                            <?php
-                                            $foto=$row->fotos;
-                                                if ($foto=="") {
-                                                    // mostrar foto por defecto
-                                                    ?>
-                                                    <img class="imgAnuncio" src="<?php echo base_url();?>uploads/anuncio/perfil.jpg">
-                                                    <?php
-                                                }
-                                                else{
-                                                    //mostrar foto del usuario 
-                                                    ?>
-                                                    <img class="imgAnuncio" src="<?php echo base_url();?>uploads/anuncio/<?php echo $row->fotos?>" >
-                                                    <?php
-                                                }
+                                                <img class="imgAnuncio" src="<?php echo base_url();?>uploads/anuncio/<?php echo $row->fotos?>" >
                                             
-                                                ?>                                            
                                             </div>
     
                                             

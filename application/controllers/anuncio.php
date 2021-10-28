@@ -496,6 +496,7 @@ class Anuncio extends CI_Controller {
 
         }
         //var_dump($anuncios);
+        $data['tipoBuscador']='categoria';
         $data['anuncios']=$anuncios;
         $data['idCategoria']=$idCategoria;
         // $lista=$this->anuncio_model->lista_mis_anuncios();
@@ -516,46 +517,104 @@ class Anuncio extends CI_Controller {
         if ($idRol==null) {
             $this->load->view('inc/header_view.php');
         }
-		$this->load->view('anuncio_busquedaCategoria',$data); // contenido
+		$this->load->view('anuncio_listado',$data); // contenido
 		$this->load->view('inc/footer_view.php'); // archivos de footer (js)
     }
 
     public function resultadoAnuncio()
     {
+        //$idUsuario=$this->session->userdata('idUsuario');
         $anuncios=null;
-        $lista=$this->anuncio_model->lista_mis_anuncios();
+        //$lista=$this->anuncio_model->lista_mis_anuncios();
         $idCategoria=$_POST['idCategoria'];
+        //$idCiudad=$_POST['campo_Ciudad'];
+        //var_dump($idCiudad);
         $idCamposCategoria=null;
-        $campo_1=$_POST['campos'];
-        //var_dump($campo_1);
-        foreach ($campo_1 as $key => $item) {
-            //print_r($key);
-            print_r($item['name']);
-            print_r($item['value']);
-            print_r('++++++');
+        $camposBusqueda=$_POST['campos'];
+        //var_dump($camposBusqueda);
+        $campos=array();
+        if ($camposBusqueda) {
+            foreach ($camposBusqueda as $key => $item) {
+                //print_r($key);
+                print_r($item['name']);
+                print_r($item['value']);
+                print_r('++++++');
+                //anuncio.titulo++++++datoscategoria.valor.1
+                if ($item['value']!='') {
+                    $partes=explode('.',$item['name']);
+                    if (isset($partes[0]) && isset($partes[1])) {
+                        
+                        $newName=$partes[0].'.'.$partes[1];
+                        $item['name']=$newName;
+                    }
+                    $campos[]=$item;
+                }
+                
+            }
+            //var_dump($campos);
         }
-        // if ($campo_1!="") {
-        //     $query="orhwere campo 1";
-        // }
-        // $campo_2=$_POST['campo_'.$idCamposCategoria];
-        // if ($campo_2!="") {
-            
-        // }
-        print_r($idCategoria);
-        foreach($lista->result() as $row){
-            
-            $datosCategoria=$this->anuncio_model->getdatosCategoria($row->idAnuncio);
-            
-            $row->datosCategoria=$datosCategoria->result();
-            $anuncios[]=$row;
+        
+        $lista=$this->anuncio_model->listaAnunciosFiltro($idCategoria,$campos);
 
+        if ($lista) {
+            foreach($lista->result() as $row){
+            
+                $datosCategoria=$this->anuncio_model->getdatosCategoria($row->idAnuncio,$row->usuario_idUsuario);
+                
+                $row->datosCategoria=$datosCategoria->result();
+                $anuncios[]=$row;
+    
+            }
         }
+        
       
         $data['anuncios']=$anuncios;
     
 		$this->load->view('anuncio_resultAnuncio',$data); // contenido
     }
 
+    public function busquedageneral()
+    {
+        
+        $idRol=$this->session->userdata('rol_idRol');
+        $anuncios=null;
+        $textoBusqueda=$_POST['textoBusqueda'];
+        //die($idCategoria);
+        $lista=$this->anuncio_model->listaTodosLosAnuncios($textoBusqueda);
+        
+        foreach($lista->result() as $row){      
+            
+            $datosCategoria=$this->anuncio_model->getdatosCategoria($row->idAnuncio,$row->usuario_idUsuario);
+                  
+            $row->datosCategoria=$datosCategoria->result();
+            $anuncios[]=$row;
+        
+        }
+        $data['tipoBuscador']='general';
+        $data['anuncios']=$anuncios;
+        $data['textoBusqueda']=$textoBusqueda;
+       
+        // $lista=$this->anuncio_model->lista_mis_anuncios();
+        // $data['anuncios']=$lista;
+        $categorias=$this->categoria_model->lista_categorias();
+        $data['categorias']=$categorias;
+
+        // $ciudades=$this->anuncio_model->lista_ciudades();
+        // $data['ciudades']=$ciudades;
+
+        if ($idRol==2) {
+            $this->load->view('inc/header_view2.php');     
+        }
+        if ($idRol==3)
+        {
+            $this->load->view('inc/header_view3.php');
+        }
+        if ($idRol==null) {
+            $this->load->view('inc/header_view.php');
+        }
+		$this->load->view('anuncio_listado',$data); // contenido
+		$this->load->view('inc/footer_view.php'); // archivos de footer (js)
+    }
 
 
 	
