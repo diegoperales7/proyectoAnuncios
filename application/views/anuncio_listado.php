@@ -123,14 +123,14 @@
             </div>
             <div class="col-3" >
                 <div class="sectionCat">
-                    <ol><span>Otras Categorias</span></ol>
+                    <ol><span>Buscar en otras categorias</span></ol>
                 
                     <?php
                     
                     foreach($categorias->result() as $row)
                     {?>
                         
-                        <a href=""><li><span><?php echo $row->nombre?></span></li></a>
+                        <a href="<?php echo base_url(); ?>index.php/anuncio/busquedacategoria?cat=<?php echo $row->idCategoria;?>" id="<?php echo $row->color?>"><li><span><?php echo $row->nombre?></span></li></a>
                             
                         <?php
                             
