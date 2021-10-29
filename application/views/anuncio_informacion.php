@@ -117,8 +117,28 @@
                             </div>
                             <div class="col-6 btnContact">
                                 
-                                    <button type="button" class="btn btn-success"><i class="fab fa-whatsapp"></i> WhatsApp</button>
-                                
+                                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalWhatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+                                    <div class="modal fade" id="modalWhatsapp" tabindex="-1" aria-hidden="true" aria-labelledby="modalTitle">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Contacto de WhatsApp</h4>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="width: 20px;"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="centrarDiv">
+                                                    <h5>Angelo Del Castillo</h5>
+                                                    <i class="fas fa-phone"></i><span> 72290029</span>
+
+                                                </div>
+
+                                            </div>
+                                            
+                                        </div>
+
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -169,7 +189,7 @@
                         <span class="comentarioFecha">14-10-2021</span>
                         <hr>
                         <hr>
-                        <span class="comentarioUsuario">Diegoperale878@gmail.com</span>
+                        <span class="comentarioUsuario">NoemiLizarazu@gmail.com</span>
                         <span class="comentarioMensaje">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita qui facilis accusantium aperiam ut ullam nisi quia ducimus, ipsa corrupti iste maxime magni molestias nobis dolore porro laborum in consequuntur.:</span>
                         <span class="comentarioFecha">14-10-2021</span>
                         <hr>

@@ -644,7 +644,6 @@ class Anuncio extends CI_Controller {
         var_dump($mensaje);
         $this->load->library('email');
         
-        
         //Indicamos el protocolo a utilizar
          $config['protocol'] = 'smtp';
           
