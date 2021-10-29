@@ -164,7 +164,6 @@ class Anuncio_model extends CI_Model {
         $this->db->update('anuncio',$data);
         
     }
-
     public function modificarAnuncio_fotoRegistro($idAnuncio,$data)
     {
         
@@ -172,6 +171,7 @@ class Anuncio_model extends CI_Model {
         $this->db->update('anuncio',$data);
         
     }
+
 
     public function recuperarAnuncio($idAnuncio)
 	{

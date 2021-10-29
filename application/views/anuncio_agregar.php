@@ -75,6 +75,14 @@
                             <label for="InputFile" class="form-label" name="userfile">Seleccione una foto </label>
                             <input class="form-control" type="file" id="InputFile" name="userfile">
                         </div>
+                        <!-- <div class="mb-3">
+                            <label for="InputFile2" class="form-label" name="userfile2">Seleccione una foto </label>
+                            <input class="form-control" type="file" id="InputFile2" name="userfile2">
+                        </div>
+                        <div class="mb-3">
+                            <label for="InputFile3" class="form-label" name="userfile3">Seleccione una foto </label>
+                            <input class="form-control" type="file" id="InputFile3" name="userfile3">
+                        </div> -->
                         <input type="hidden" name="idCategoria" value="<?php echo $idCategoria;?>">
 
 

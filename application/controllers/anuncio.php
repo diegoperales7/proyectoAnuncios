@@ -36,6 +36,104 @@ class Anuncio extends CI_Controller {
 		$this->load->view('inc/footer_view.php'); // archivos de footer (js)
     }
 
+    public function agregarbdFALSE()
+    {
+        
+        $idUsuario=$this->session->userdata('idUsuario');
+        //$idCategoria=$_POST['categoria_idCategoria'];
+        $idCategoria=$_POST['idCategoria'];
+
+        
+        $data['codigo']="r";
+        $data['titulo']=$_POST['titulo'];
+        $data['precio']=$_POST['precio'];
+        $data['estado']=$_POST['estado'];
+        $data['descripcion']=$_POST['descripcion']; 
+        $data['usuario_idUsuario']=$idUsuario;
+        
+        $data['actividad_idActividad']=$_POST['actividad_idActividad'];
+        $data['ciudad_idCiudad']=$_POST['ciudad_idCiudad'];
+        $data['categoria_idCategoria']=$idCategoria;
+
+        $this->anuncio_model->insertar_anuncio($data);
+        $ultimoID=$this->db->insert_id();
+
+        $camposcategorias=$this->camposcategoria_model->lista_camposcategorias($idCategoria);
+        $data['camposcategorias']=$camposcategorias;
+
+        foreach($camposcategorias->result() as $row){
+            //$var=$row->nombre;
+            //var_dump($var);
+            $data2['valor']=$_POST[$row->nombre];
+            $data2['anuncio_idAnuncio']=$ultimoID;
+            $data2['camposcategoria_idCamposCategoria']=$row->idCamposCategoria;
+            $data2['usuarioid']=$idUsuario;
+            $this->anuncio_model->insertar_datosCategoria($data2);
+
+        }
+      
+        $codigo='r'.str_pad($ultimoID,5,'0',STR_PAD_LEFT);
+        $data7['codigo']=$codigo;        
+        $this->anuncio_model->modificarAnuncio($ultimoID,$data7);
+        
+        $nombrearchivo=$ultimoID.".jpg";
+        $nombrearchivo2=$ultimoID."_2".".jpg";
+        $nombrearchivo3=$ultimoID."_3".".jpg";
+        
+        $config['upload_path']='./uploads/anuncio';
+        //nombre del archivo
+        $config['file_name']=$nombrearchivo;
+        $config['allowed_types']='jpg|png';//'gif|jpg|png';
+        
+        //reemplazar los archivos
+        $direccion=FCPATH."uploads\usuario\\".$nombrearchivo;
+        $direccion2=FCPATH."uploads\usuario\\".$nombrearchivo2;
+        $direccion3=FCPATH."uploads\usuario\\".$nombrearchivo3;
+        if(file_exists($direccion))
+        {     
+            unlink($direccion);      
+        }
+        if(file_exists($direccion2))
+        {     
+            unlink($direccion2);      
+        }
+        if(file_exists($direccion3))
+        {     
+            unlink($direccion3);      
+        }
+        
+        //tipos de archivos permitidos
+        $this->load->library('upload',$config);
+        // $this->load->library('upload2',$config);
+        // $this->load->library('upload3',$config);
+        
+        if (!$this->upload->do_upload())
+        {
+            $data9['fotos']="perfil.jpg";
+            $data9['fotos2']=$nombrearchivo2;
+            $data10['fotos3']=$nombrearchivo3;
+
+           
+            $this->anuncio_model->modificarAnuncio($idUsuario,$data9);
+            redirect('usuario/panel','refresh');
+            //redirect('usuario/panel','refresh');
+        }
+        else
+        {          
+            $data8['fotos']=$nombrearchivo;
+            $data8['fotos2']=$nombrearchivo;
+            $data8['fotos3']=$nombrearchivo;
+            
+            
+            $this->anuncio_model->modificarAnuncio($ultimoID,$data8);
+            // $this->anuncio_model->modificarAnuncio_fotoRegistro($ultimoID,$data9);
+            // $this->anuncio_model->modificarAnuncio_fotoRegistro($ultimoID,$data10);
+            $this->upload->data();
+            redirect('usuario/panel','refresh');
+        }
+        
+    }
+
     public function agregarbd()
     {
         
@@ -71,12 +169,10 @@ class Anuncio extends CI_Controller {
             $this->anuncio_model->insertar_datosCategoria($data2);
 
         }
-        
 
-        
         $codigo='r'.str_pad($ultimoID,5,'0',STR_PAD_LEFT);
         $data7['codigo']=$codigo;        
-        $this->anuncio_model->modificarAnuncio_fotoRegistro($ultimoID,$data7);
+        $this->anuncio_model->modificarAnuncio($ultimoID,$data7);
         
         $nombrearchivo=$ultimoID.".jpg";
         
@@ -97,20 +193,24 @@ class Anuncio extends CI_Controller {
         
         if (!$this->upload->do_upload())
         {
-            //$data['error']=$this->upload->display_errors();
+            $data9['fotos']="perfil.jpg";
             
+
+           
+            $this->anuncio_model->modificarAnuncio($idUsuario,$data9);
             redirect('usuario/panel','refresh');
         }
         else
         {          
             $data8['fotos']=$nombrearchivo;
             
-            $this->anuncio_model->modificarAnuncio_fotoRegistro($ultimoID,$data8);
+            $this->anuncio_model->modificarAnuncio($ultimoID,$data8);
             $this->upload->data();
             redirect('usuario/panel','refresh');
         }
         
     }
+
 
     public function agregar_empleo()
     {
@@ -639,9 +739,9 @@ class Anuncio extends CI_Controller {
         $correoOrigen=$_POST['correo'];
         $asunto=$_POST['asunto'];
         $mensaje=$_POST['mensaje'];
-        var_dump($correoOrigen);
-        var_dump($asunto);
-        var_dump($mensaje);
+        // var_dump($correoOrigen);
+        // var_dump($asunto);
+        // var_dump($mensaje);
         $this->load->library('email');
         
         //Indicamos el protocolo a utilizar
@@ -673,9 +773,9 @@ class Anuncio extends CI_Controller {
          $this->email->initialize($config);
   
        //Ponemos la dirección de correo que enviará el email y un nombre
-         $this->email->from('telecomhardy@gmail.com');
+         $this->email->from($correoOrigen);//colocar el correo de sesion
         
-         $this->email->to($correoOrigen);//colocar el correo de sesion
+         $this->email->to('telecomhardy@gmail.com');
           
        //Definimos el asunto del mensaje
          $this->email->subject($asunto);//$this->input->post("asunto")
@@ -688,8 +788,10 @@ class Anuncio extends CI_Controller {
           
          //Enviamos el email y si se produce bien o mal que avise con una flasdata
          if($this->email->send()){
+             var_dump("envio");
              $this->session->set_flashdata('envio', 'Email enviado correctamente');
          }else{
+            var_dump("no envio");
              $this->session->set_flashdata('envio', 'No se a enviado el email');
          }
           

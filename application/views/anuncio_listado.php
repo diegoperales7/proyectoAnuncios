@@ -103,8 +103,60 @@
                                     </div>
                                     
                                     <div class="pie">
-                                        <a class="btn btn-success botonPie" href="<?php echo base_url(); ?>index.php/usuario/logout"><i class="far fa-envelope "></i> Mensaje</a>
-                                        <a class="btn btn-success botonPie" href=""><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                                        <a class="btn btn-success botonPie" href="" data-bs-toggle="modal" data-bs-target="#modalMensaje"><i class="far fa-envelope "></i> Mensaje</a>
+                                            <div class="modal fade" id="modalMensaje" tabindex="-1" aria-hidden="true" aria-labelledby="modalTitle">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title">Enviar mail</h4>
+                                                            <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <?php 
+                                                            echo form_open_multipart('anuncio/enviarMensaje');
+                                                            ?>
+                                                            <label for=InputCorreo" class="form-label">Correo origen</label>
+                                                            <input type="text" class="form-control" id="InputCorreo" name="correo" placeholder="Escriba su correo">
+                                                            <label for="InputAsunto">Asunto</label>
+                                                            <input type="text" class="form-control" id="InputAsunto" name="asunto" placeholder="Escriba el asunto">
+                                                            <label for="InputMensaje">Mensaje</label>
+                                                            <textarea class="form-control" id="InputMensaje" name="mensaje" placeholder="Escriba su mensaje" ></textarea>
+
+                                                        </div>
+                                                        <div  class="modal-footer">
+                                                            <button type="submit" class="btn btn-success" >Enviar</button>
+                                                            <?php
+                                                                echo form_close();                                                    
+                                                            ?>
+                                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal" >Cancelar</button>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        <a class="btn btn-success botonPie" href="" data-bs-toggle="modal" data-bs-target="#modalWhatsapp"><i class="fab fa-whatsapp" ></i> WhatsApp</a>
+                                            <div class="modal fade" id="modalWhatsapp" tabindex="-1" aria-hidden="true" aria-labelledby="modalTitle">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title">Contacto de WhatsApp</h4>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="width: 20px;"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="centrarDiv">
+                                                                <h5>Angelo Del Castillo</h5>
+                                                                <i class="fas fa-phone"></i><span> 72290029</span>
+
+                                                            </div>
+
+                                                        </div>
+                                                        
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
                                         <a class="btn btn-outline-danger botonPie" href=""><i class="fas fa-exclamation-triangle"></i> Denunciar</a>
     
                                     </div>

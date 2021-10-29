@@ -84,7 +84,7 @@
                                 
                                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalMensaje"><i class="fas fa-envelope" ></i> Enviar Mensaje</button>
                                 <div class="modal fade" id="modalMensaje" tabindex="-1" aria-hidden="true" aria-labelledby="modalTitle">
-                                    <div class="modal-dialog">
+                                    <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h4 class="modal-title">Enviar mail</h4>
@@ -103,7 +103,7 @@
 
                                             </div>
                                             <div  class="modal-footer">
-                                                <button type="button" class="btn btn-success" >Enviar</button>
+                                                <button type="submit" class="btn btn-success" >Enviar</button>
                                                 <?php
                                                     echo form_close();                                                    
                                                 ?>
@@ -119,26 +119,26 @@
                                 
                                     <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalWhatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</button>
                                     <div class="modal fade" id="modalWhatsapp" tabindex="-1" aria-hidden="true" aria-labelledby="modalTitle">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h4 class="modal-title">Contacto de WhatsApp</h4>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="width: 20px;"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="centrarDiv">
-                                                    <h5>Angelo Del Castillo</h5>
-                                                    <i class="fas fa-phone"></i><span> 72290029</span>
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Contacto de WhatsApp</h4>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="width: 20px;"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="centrarDiv">
+                                                        <h5>Angelo Del Castillo</h5>
+                                                        <i class="fas fa-phone"></i><span> 72290029</span>
+
+                                                    </div>
 
                                                 </div>
-
+                                                
                                             </div>
-                                            
+
                                         </div>
 
                                     </div>
-
-                                </div>
                             </div>
                         </div>
                     </div>
