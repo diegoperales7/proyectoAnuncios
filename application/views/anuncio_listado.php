@@ -3,7 +3,7 @@
     <div class="container ">
         <div class="row">
             <div class="col-9 " >
-                <div class="row">
+                <div class="row tam">
                     <div class="buscador">
                         <?php if (isset($tipoBuscador) && $tipoBuscador=='general') {
                             include_once "inc/buscador_view.php";
@@ -43,7 +43,7 @@
                         
                     </div>
                 </div>
-                <div class="row" id="resultadoFiltroCategoria">         
+                <div class="row tam" id="resultadoFiltroCategoria">         
                     <?php
                         if ($anuncios) {
                             foreach($anuncios as $row)
@@ -58,7 +58,7 @@
                                     <div class="cuerpo">
                                         <div class="row tam">
                                             <div class="col-9 pad">
-                                                <h5><a href="<?php echo base_url(); ?>index.php/anuncio/info"><?php echo $row->titulo;?></a> </h5>
+                                                <h5><a href="<?php echo base_url(); ?>index.php/anuncio/anuncioInfo"><?php echo $row->titulo;?></a> </h5>
                                                 <i class="fas fa-list-ul "> <?php echo $row->nombre;?></i>
                                                 <i class="fas fa-map-marked-alt"> <?php echo $row->ciudad;?></i>
                                                 <p><?php echo $row->descripcion;?></p>
@@ -99,6 +99,7 @@
                                         
                                     
                                         <h3 class="precio"><?php echo $row->precio;?> Bs</h3>
+                                        
                                     </div>
                                     
                                     <div class="pie">

@@ -6,7 +6,7 @@
         foreach($anuncios as $row){
             ?>   
            
-            <div class="col-8 borderAnuncio sb listAnuncios" >
+            <div class="col-8 borderAnuncio sb centrarDiv" >
                 <div class="cabeza">
                     <h6><?php echo $row->tipo;?></h6>
                     <span><?php echo $row->codigo;?></span>

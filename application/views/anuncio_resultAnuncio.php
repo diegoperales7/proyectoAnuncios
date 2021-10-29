@@ -1,10 +1,4 @@
-<!-- <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>bootstrap/css/index.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>bootstrap/css/reportes.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>bootstrap/css/anuncio.css"> -->
-
-
-<div class="row">    
+<div class="row tam">    
              
     <?php
         if($anuncios){
@@ -19,7 +13,7 @@
                     <div class="cuerpo">
                         <div class="row tam">
                             <div class="col-9 pad">
-                                <h5><a href=""><?php echo $row->titulo;?></a> </h5>
+                                <h5><a href="<?php echo base_url(); ?>index.php/anuncio/anuncioInfo"><?php echo $row->titulo;?></a> </h5>
                                 <i class="fas fa-list-ul "> <?php echo $row->nombre;?></i>
                                 <i class="fas fa-map-marked-alt"> <?php echo $row->ciudad;?></i>
                                 <p><?php echo $row->descripcion;?></p>     
@@ -79,12 +73,3 @@
 
 </div>
 
-<!-- 
-<script src="<?php echo base_url(); ?>bootstrap/js/bootstrap.js"></script>
-<script src="<?php echo base_url(); ?>bootstrap/js/jquery-3.6.0.min.js"></script>
-<script src="<?php echo base_url(); ?>bootstrap/js/jquery.validate.min.js"></script>
-
-<script src="<?php echo base_url(); ?>bootstrap/js/usuario.js"></script>
-
-
-<script src="https://kit.fontawesome.com/0b0aaf346f.js" crossorigin="anonymous"></script> -->

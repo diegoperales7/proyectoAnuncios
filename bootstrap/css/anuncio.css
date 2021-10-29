@@ -4,7 +4,7 @@
     margin-bottom: 5px;
     width: 100%;
 }
-.listAnuncios{
+.centrarDiv{
     margin: 0 auto;
 }
 
@@ -190,4 +190,83 @@ margin-bottom: 0px;
 }
 .form-control:focus{
     box-shadow: none;
+}
+
+.caruselTam{
+    border-radius: 10px;
+    height: 490px;
+    margin-bottom: 5px;
+}
+
+.imgRedonda{
+    border-radius: 50%;
+    border:2px solid #11123A;
+
+}
+.datos{
+    list-style: none;
+    padding-left: 0px;
+}
+.sinPadding{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.btnContact button{
+    width: 100%;
+}
+.card{
+    margin-bottom: 5px;
+    border: rgb(167, 167, 182) 1px solid;
+}
+.com{
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+.compartir{
+    padding-bottom: 0px;
+}
+.comentario textarea{
+    width: 100%;
+}
+.comentarioUsuario{
+    font-size: 12px;
+    font-weight: bold;
+}
+.comentarioFecha{
+    font-size: 12px;
+    font-weight: inherit;
+    color: #2023dd;
+}
+.comentarioMensaje{
+    font-size: 13px;
+    
+}
+.icon{
+    border: midnightblue 1px solid;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+.compartirIcon{
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+    
+    
+}
+.compartirIcon li{
+    flex: auto;
+    justify-content: center;
+    width: 100%;
+
+    
+}
+.compartirIcon li a i{
+    
+    color: midnightblue;
+    height: auto;
+    justify-content: center;
+
+    
 }
