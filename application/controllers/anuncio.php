@@ -539,9 +539,9 @@ class Anuncio extends CI_Controller {
         if ($camposBusqueda) {
             foreach ($camposBusqueda as $key => $item) {
                 //print_r($key);
-                print_r($item['name']);
-                print_r($item['value']);
-                print_r('++++++');
+                // print_r($item['name']);
+                // print_r($item['value']);
+                // print_r('++++++');
                 //anuncio.titulo++++++datoscategoria.valor.1
                 if ($item['value']!='') {
                     $partes=explode('.',$item['name']);
@@ -551,12 +551,9 @@ class Anuncio extends CI_Controller {
                         $item['name']=$newName;
                     }
                     $campos[]=$item;
-                }
-                
-            }
-            //var_dump($campos);
-        }
-        
+                }             
+            }         //var_dump($campos);
+        }    
         $lista=$this->anuncio_model->listaAnunciosFiltro($idCategoria,$campos);
 
         if ($lista) {
@@ -569,8 +566,7 @@ class Anuncio extends CI_Controller {
     
             }
         }
-        
-      
+           
         $data['anuncios']=$anuncios;
     
 		$this->load->view('anuncio_resultAnuncio',$data); // contenido
@@ -620,11 +616,9 @@ class Anuncio extends CI_Controller {
     }
 
 
-    public function info()
+    public function anuncioInfo()
     {
         $idRol=$this->session->userdata('rol_idRol');
-        
-
         if ($idRol==2) {
             $this->load->view('inc/header_view2.php');//usuario premium
         }
@@ -635,9 +629,73 @@ class Anuncio extends CI_Controller {
         if ($idRol==null) {
             $this->load->view('inc/header_view.php');//sin registro
         }
-		$this->load->view('anuncio_listado'); // contenido
+		$this->load->view('anuncio_informacion'); // contenido
 		$this->load->view('inc/footer_view.php'); // archivos de footer (js)
         
+    }
+
+    public function enviarMensaje()
+    {
+        $correoOrigen=$_POST['correo'];
+        $asunto=$_POST['asunto'];
+        $mensaje=$_POST['mensaje'];
+        var_dump($correoOrigen);
+        var_dump($asunto);
+        var_dump($mensaje);
+        $this->load->library('email');
+        
+        
+        //Indicamos el protocolo a utilizar
+         $config['protocol'] = 'smtp';
+          
+        //El servidor de correo que utilizaremos
+         $config["smtp_host"] = 'smtp.gmail.com';
+          
+        //Nuestro usuario
+         $config["smtp_user"] = 'telcomhardy@gmail.com';
+          
+        //Nuestra contraseña
+         $config["smtp_pass"] = 'veronica2020';   
+          
+        //El puerto que utilizará el servidor smtp
+         $config["smtp_port"] = '587';
+         
+        //El juego de caracteres a utilizar
+         $config['charset'] = 'utf-8';
+  
+        //Permitimos que se puedan cortar palabras
+         $config['wordwrap'] = TRUE;
+          
+        //El email debe ser valido 
+        $config['validate'] = true;
+        
+         
+       //Establecemos esta configuración
+         $this->email->initialize($config);
+  
+       //Ponemos la dirección de correo que enviará el email y un nombre
+         $this->email->from('telecomhardy@gmail.com');
+        
+         $this->email->to($correoOrigen);//colocar el correo de sesion
+          
+       //Definimos el asunto del mensaje
+         $this->email->subject($asunto);//$this->input->post("asunto")
+          
+       //Definimos el mensaje a enviar
+         $this->email->message($mensaje
+                 //"Email: ".$this->input->post("email").
+                 //" Mensaje: ".$this->input->post("mensaje")
+                 );
+          
+         //Enviamos el email y si se produce bien o mal que avise con una flasdata
+         if($this->email->send()){
+             $this->session->set_flashdata('envio', 'Email enviado correctamente');
+         }else{
+             $this->session->set_flashdata('envio', 'No se a enviado el email');
+         }
+          
+         redirect('anuncio/anuncioInfo','refresh');
+ 
     }
 
 
