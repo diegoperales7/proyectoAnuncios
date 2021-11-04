@@ -187,12 +187,12 @@
                         <span class="comentarioUsuario">Diegoperale878@gmail.com</span>
                         <span class="comentarioMensaje">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita qui facilis accusantium aperiam ut ullam nisi quia ducimus, ipsa corrupti iste maxime magni molestias nobis dolore porro laborum in consequuntur.:</span>
                         <span class="comentarioFecha">14-10-2021</span>
-                        <hr>
+                        
                         <hr>
                         <span class="comentarioUsuario">NoemiLizarazu@gmail.com</span>
                         <span class="comentarioMensaje">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita qui facilis accusantium aperiam ut ullam nisi quia ducimus, ipsa corrupti iste maxime magni molestias nobis dolore porro laborum in consequuntur.:</span>
                         <span class="comentarioFecha">14-10-2021</span>
-                        <hr>
+                        
                     </div>
                 </div>
             </div>
