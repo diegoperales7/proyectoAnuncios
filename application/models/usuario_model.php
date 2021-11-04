@@ -24,6 +24,20 @@ class Usuario_model extends CI_Model {
         return $this->db->get();
 	}
 
+    public function usuarioAnuncioInfo($idAnuncio)
+	{
+		//$this->db->select('*');
+        $this->db->select('usuario.nombres,usuario.primerApellido,usuario.segundoApellido,usuario.correo,usuario.foto,ciudad.ciudad,usuario.celular');
+        $this->db->from('anuncio');
+        $this->db->where('anuncio.activo',1);
+        $this->db->where('anuncio.idAnuncio',$idAnuncio);
+        //$this->db->join('actividad','actividad.idActividad=anuncio.actividad_idActividad');
+        $this->db->join('usuario','usuario.idUsuario=anuncio.usuario_idUsuario');
+        //$this->db->join('categoria','categoria.idCategoria=anuncio.categoria_idCategoria');
+        $this->db->join('ciudad','ciudad.idCiudad=anuncio.ciudad_idCiudad');  
+        return $this->db->get();
+	}
+
     public function modificarUsuario($idUsuario,$data)
     {
         

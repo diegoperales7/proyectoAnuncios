@@ -19,11 +19,6 @@ class Anuncio_model extends CI_Model {
         return $this->db->get();
 	}
 
-        
-	
-
-    
-
     public function insertar_anuncio($data)
     {
         $this->db->insert('anuncio',$data);    
@@ -85,17 +80,21 @@ class Anuncio_model extends CI_Model {
  
         return $this->db->get();
 	}
-    public function getdatosCategoria($idAnuncio,$idUsuario)
-    {
-        //$idUsuario=$this->session->userdata('idUsuario');
-        
-        $this->db->select('datoscategoria.valor');
-        $this->db->from('datoscategoria');
-        $this->db->where('anuncio_idAnuncio',$idAnuncio);
-        $this->db->where('usuarioid',$idUsuario);
+
+    public function anuncioInformacion($idAnuncio)
+	{
+		//$this->db->select('*');
+        $this->db->select('anuncio.idAnuncio,anuncio.codigo,anuncio.titulo,anuncio.precio,anuncio.estado,anuncio.descripcion,anuncio.fotos,anuncio.fechaRegistro,anuncio.usuario_idUsuario,actividad.tipo,categoria.nombre,ciudad.ciudad');
+        $this->db->from('anuncio');
+        $this->db->where('anuncio.activo',1);
+        $this->db->where('anuncio.idAnuncio',$idAnuncio);
+        $this->db->join('actividad','actividad.idActividad=anuncio.actividad_idActividad');
+        $this->db->join('categoria','categoria.idCategoria=anuncio.categoria_idCategoria');
+        $this->db->join('ciudad','ciudad.idCiudad=anuncio.ciudad_idCiudad');  
         return $this->db->get();
-        
-    }
+	}
+
+    
 
     public function listaAnunciosFiltro($idCategoria,$camposFiltro)
     {   
@@ -138,6 +137,19 @@ class Anuncio_model extends CI_Model {
         $this->db->group_by('anuncio.idAnuncio');
         return $this->db->get();     
     }
+
+    public function getdatosCategoria($idAnuncio,$idUsuario)
+    {
+        //$idUsuario=$this->session->userdata('idUsuario');
+        
+        $this->db->select('datoscategoria.valor');
+        $this->db->from('datoscategoria');
+        $this->db->where('anuncio_idAnuncio',$idAnuncio);
+        $this->db->where('usuarioid',$idUsuario);
+        return $this->db->get();
+        
+    }
+
 
     public function eliminarAnuncio($idAnuncio,$data)
     {

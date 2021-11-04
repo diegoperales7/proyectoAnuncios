@@ -2,10 +2,14 @@
 <div class="container-fluid  ">
     <div class="container  ">
         <div class="row ">
+            <?php 
+            foreach($anuncios as $row)
+            {?>
+            <h5><?php echo $row->nombre;?> <i class="fas fa-long-arrow-alt-right"></i> <?php echo $row->codigo;?></h3>
             <div class="col-8 centrarDiv">
                 
                 <div class="row">
-
+                    
                     <div id="carouselExampleIndicators" class="carousel carousel-dark slide caruselTam" data-bs-ride="carousel">
                         <div class="carousel-indicators">
                             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -14,7 +18,7 @@
                         </div>
                         <div class="carousel-inner caruselTam">
                             <div class="carousel-item active">
-                            <img src="<?php echo base_url();?>uploads/anuncio/11.jpg" class="d-block w-100 caruselTam" alt="...">
+                            <img src="<?php echo base_url();?>uploads/anuncio/<?php echo $row->fotos;?>" class="d-block w-100 caruselTam" alt="...">
                             </div>
                             <div class="carousel-item">
                             <img src="<?php echo base_url();?>uploads/anuncio/perfil.jpg" class="d-block w-100 caruselTam" alt="...">
@@ -32,31 +36,32 @@
                             <span class="visually-hidden">Next</span>
                         </button>
                     </div>
+                        
                 </div>
                 
                 <div class="row">
-                    <h4>Titulo2  </h4>
+                    <h4><?php echo $row->titulo;?></h4>
                 </div>
-                <h3 class="precio"><?php //echo $row->precio;?>7500 Bs</h3>
+                <h3 class="precio"><?php echo $row->precio;?> Bs</h3>
                 <ul class="camposCat"> 
                     <?php
-                        //foreach($row->datosCategoria as $rowCategoria){?>
+                        foreach($row->datosCategoria as $rowCategoria){?>
                             <li>
-                                <!-- <span><?php //echo $rowCategoria->valor;?></span> -->
-                                <span>Marca: Toyota</span>
-                                </li>
-                                <li><span>Año:2012</span></li>
+                                <span><?php echo $rowCategoria->valor;?></span>
                                 
                                 <?php
-                        //}
+                        }
                     ?> 
                     
                     
                 </ul>
                 
                 <div class="row">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime exercitationem alias possimus odio inventore dolor incidunt, placeat aliquid quam, doloribus temporibus suscipit nemo nobis mollitia eum dolores rerum sequi ratione?</p>
+                    <p><?php echo $row->descripcion;?></p>
                 </div>
+                <?php
+                    } 
+                ?>
                 <div class="row">
                             <p>¿Hay algún error en el anuncio o algo que debamos revisar?</p>
                             
@@ -67,17 +72,22 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-4">
-                                <img class="imgRedonda" src="<?php echo base_url();?>uploads/usuario/2.jpg" width="100%" height="100px" >
-                            </div>
-                            <div class="col-8 sinPadding">
-                                <ul class="datos">
-                                    <li><i class="fas fa-user"> <span>Anguelo Del Castillo</span></i></li>
-                                    <li><i class="fas fa-map-marked-alt"> <span>Ciudad</span></i></li>
-                                    <li><i class="fas fa-envelope"> <span>diegoperales_1994@gmail.com</span></i></li>
-                                    <li><i class="fas fa-phone-square-alt"> <span>72290029</span></i></li>
-                                </ul>
-                            </div>
+                            <?php
+                            foreach($usuarioinfo->result() as $row)
+                            {
+                                ?>
+                                <div class="col-4">
+                                    <img class="imgRedonda" src="<?php echo base_url();?>uploads/usuario/<?php echo $row->foto;?>" width="100%" height="100px" >
+                                </div>
+                                <div class="col-8 sinPadding">
+                                    <ul class="datos">
+                                        <li><i class="fas fa-user"> <span><?php echo $row->nombres." ".$row->primerApellido." ".$row->segundoApellido; ?></span></i></li>
+                                        <li><i class="fas fa-map-marked-alt"> <span><?php echo $row->ciudad?></span></i></li>
+                                        <li><i class="fas fa-envelope"> <span><?php echo $row->correo?></span></i></li>
+                                        <li><i class="fas fa-phone-square-alt"> <span><?php echo $row->celular?></span></i></li>
+                                    </ul>
+                                </div><?php
+                            }?>
                         </div>
                         <div class="row">
                             <div class="col-6 btnContact">
@@ -127,9 +137,12 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     <div class="centrarDiv">
-                                                        <h5>Angelo Del Castillo</h5>
-                                                        <i class="fas fa-phone"></i><span> 72290029</span>
-
+                                                    <?php
+                                                    foreach($usuarioinfo->result() as $row)
+                                                    {?>
+                                                        <h5><?php echo $row->nombres." ".$row->primerApellido." ".$row->segundoApellido; ?></h5>
+                                                        <h6> <i class="fas fa-phone"></i> <?php echo $row->celular?></h6><?php
+                                                    }?>    
                                                     </div>
 
                                                 </div>

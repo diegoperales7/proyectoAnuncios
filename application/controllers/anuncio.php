@@ -719,6 +719,32 @@ class Anuncio extends CI_Controller {
     public function anuncioInfo()
     {
         $idRol=$this->session->userdata('rol_idRol');
+        $idAnuncio=$_GET['var'];
+        $anuncios=null;
+        //$textoBusqueda=$_POST['textoBusqueda'];
+        //die($idCategoria);
+        $lista=$this->anuncio_model->anuncioInformacion($idAnuncio);
+        
+        foreach($lista->result() as $row){      
+            
+            $datosCategoria=$this->anuncio_model->getdatosCategoria($row->idAnuncio,$row->usuario_idUsuario);
+            $row->datosCategoria=$datosCategoria->result();
+            $anuncios[]=$row;
+        
+        }
+        //$data['tipoBuscador']='general';
+        $usuario=$this->usuario_model->usuarioAnuncioInfo($idAnuncio);
+
+        $data['anuncios']=$anuncios;
+
+        $data['usuarioinfo']=$usuario;
+        //$data['textoBusqueda']=$textoBusqueda;
+       
+        // $lista=$this->anuncio_model->lista_mis_anuncios();
+        // $data['anuncios']=$lista;
+        //$categorias=$this->categoria_model->lista_categorias();
+        //$data['categorias']=$categorias;
+
         if ($idRol==2) {
             $this->load->view('inc/header_view2.php');//usuario premium
         }
@@ -729,7 +755,7 @@ class Anuncio extends CI_Controller {
         if ($idRol==null) {
             $this->load->view('inc/header_view.php');//sin registro
         }
-		$this->load->view('anuncio_informacion'); // contenido
+		$this->load->view('anuncio_informacion',$data); // contenido
 		$this->load->view('inc/footer_view.php'); // archivos de footer (js)
         
     }
